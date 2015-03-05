@@ -1,4 +1,4 @@
-class Location < ActiveRecord::Base
+class Realm < ActiveRecord::Base
   has_ancestry
   belongs_to :peerage
 end

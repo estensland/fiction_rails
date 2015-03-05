@@ -1,4 +1,4 @@
-class Character < ActiveRecord::Base
+class House < ActiveRecord::Base
   has_many :characters
   belongs_to :realm
 end

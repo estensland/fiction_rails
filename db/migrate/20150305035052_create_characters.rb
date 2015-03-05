@@ -6,7 +6,6 @@ class CreateCharacters < ActiveRecord::Migration
       t.string :native_name
       t.string :native_translation
       t.string :nickname
-      t.string :occupation
       t.string :fighting_class
       t.string :real_person
       t.text :description
