@@ -1,0 +1,25 @@
+<div class="sa-container">
+  <table class="sa-table">
+    <thead>
+      <tr>
+        <th>
+          Attribute
+        </th>
+        <th>
+          Value
+        </th>
+      </tr>
+    </thead>
+    <% @attributes.each do |attr| %>
+      <tr>
+        <td>
+          <%= attr.first %>:
+        </td>
+        <td>
+          <%= attr.last %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <a class="sa-edit-link" href=<%= sa_link(@model, :edit) %>>Edit Record</a>
+</div>

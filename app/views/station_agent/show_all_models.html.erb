@@ -1,0 +1,24 @@
+<div class="sa-container">
+  <table class="sa-table">
+    <thead>
+      <tr>
+        <th>
+          Table
+        </th>
+        <th>
+          Count
+        </th>
+      </tr>
+    </thead>
+    <% @models.reject{|mod| mod == "ActiveRecord::SchemaMigration"}.each do |model| %>
+        <tr>
+          <td>
+            <a href="<%= sa_model_path(sa_model: model) %>"><%= model %>:</a>
+          </td>
+          <td>
+            <%= model.constantize.count %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,24 @@
+<div class="sa-container">
+  <table class="sa-table">
+    <thead>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+
+        </th>
+      </tr>
+    </thead>
+    <% @objects.each do |object| %>
+        <tr>
+          <td>
+            <a href="<%= sa_show_path(sa_model: object.class.name, sa_id: object.id) %>"><%= object.id %>:</a>
+          </td>
+          <td>
+            <%= object.bailic_name %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</div>

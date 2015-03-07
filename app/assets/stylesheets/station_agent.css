@@ -1,0 +1,70 @@
+.sa-container{
+  font: normal normal normal 12px/normal '.HelveticaNeueDeskInterface-Regular';
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+}
+
+.sa-table{
+  margin-top: 24px;
+  margin-bottom: 24px;
+  margin-left: 40px;
+  border-collapse: collapse;
+  border-radius: 50px;
+}
+
+.sa-table tbody{
+  border: 1px solid #333;
+}
+
+.sa-table thead{
+  color: white;
+  background-color: rgba(210, 0, 0, .95);
+}
+
+.sa-table thead th:last-child{
+  border-top-right-radius: 50px;
+}
+
+.sa-table thead th:first-child{
+  border-top-left-radius: 50px;
+}
+
+.sa-table thead th{
+  padding: 5px;
+}
+
+.sa-table td{
+  border-right: 1px solid #333;
+  margin: 0;
+}
+
+.sa-table tr{
+  border-bottom: 1px solid #333;
+}
+
+.sa-table td{
+  padding: 3px 5px;
+}
+
+.sa-table tbody tr td:first-child{
+  text-align: right
+}
+
+.sa-table .sa-table-submit td:first-child{
+  text-align: center;
+}
+
+.sa-edit-link{
+  color: white;
+  text-decoration: none;
+  padding: 8px 18px;
+  margin-top: 19px;
+  background-color: rgba(210, 0, 0, .95);
+  border-radius: 10px;
+}
+
+a.sa-edit-link{
+  margin-left: 50px;
+}
+

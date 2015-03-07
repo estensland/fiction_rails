@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'welcome#index'
-  get 'overlord/' => 'overlord#show_anything'
-  post 'overlord/' => 'overlord#update_anything'
+  get 'sa/' => 'station_agent#show_all_models', as: :sa
+  get 'sa/:sa_model' => 'station_agent#show_all_of_a_model', as: :sa_model
+  get 'sa/:sa_model/:sa_id' => 'station_agent#show_anything', as: :sa_show
+  get 'sa/:sa_model/:sa_id/edit' => 'station_agent#edit_anything', as: :sa_edit
+  post 'sa/:sa_model/:sa_id' => 'station_agent#update_anything', as: :sa_update
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
