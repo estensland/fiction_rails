@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150305043531) do
   create_table "realms", force: :cascade do |t|
     t.string   "name"
     t.string   "translation"
-    t.integer  "peerage_id"
+    t.integer  "primary_title_id"
     t.text     "description"
     t.string   "ancestry"
     t.datetime "created_at"

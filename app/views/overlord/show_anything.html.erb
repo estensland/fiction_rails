@@ -1,0 +1,10 @@
+<%= form_for @model, url: "overlord?model=#{@model.class}", method: 'post' do |f| %>
+  <% @attributes.each do |attr| %>
+    <%= f.label attr.first.to_sym %>:
+    <%= f.text_field attr.first.to_sym %>
+    <p> <%=@attr_hash[attr.first].type%> </p>
+    <br/>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

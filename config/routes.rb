@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-
+  root 'welcome#index'
+  get 'overlord/' => 'overlord#show_anything'
+  post 'overlord/' => 'overlord#update_anything'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
