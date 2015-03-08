@@ -3,21 +3,24 @@
     <thead>
       <tr>
         <th>
-          ID
-        </th>
-        <th>
 
         </th>
-      </tr>
+        <% @attributes.each do |attrib| %>
+          <th>
+            <%= attrib%>
+          </th>
+        <%end%>
     </thead>
     <% @objects.each do |object| %>
         <tr>
           <td>
-            <a href="<%= sa_show_path(sa_model: object.class.name, sa_id: object.id) %>"><%= object.id %>:</a>
+            <a href="<%= sa_show_path(sa_model: object.class.name, sa_id: object.id) %>">Show:</a>
           </td>
+          <% @attributes.each do |attrib| %>
           <td>
-            <%= object.bailic_name %>
+            <%= object.send(attrib)%>
           </td>
+        <%end%>
         </tr>
     <% end %>
   </table>

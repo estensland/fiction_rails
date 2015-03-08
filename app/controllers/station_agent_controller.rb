@@ -9,7 +9,11 @@ class StationAgentController < ApplicationController
   end
 
   def show_all_of_a_model
-    @objects = params['sa_model'].constantize.all
+    @objects = params['sa_model'].constantize.order(:id)
+
+    if @objects.first
+      @attributes = @objects.first.attributes.map(&:first)
+    end
   end
 
   def show_anything
