@@ -1,8 +1,23 @@
+.sa-edit-bar{
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+}
+
 .sa-container{
   font: normal normal normal 12px/normal '.HelveticaNeueDeskInterface-Regular';
   width: 100%;
   margin: 10px;
   padding: 10px;
+}
+
+.sa-container h3{
+  text-align: center;
+}
+
+.sa-sub-container{
+  width:20%;
+  display: inline-block;
 }
 
 .sa-table{
@@ -23,10 +38,12 @@
 }
 
 .sa-table thead th:last-child{
+  padding-right: 12px;
   border-top-right-radius: 50px;
 }
 
 .sa-table thead th:first-child{
+  padding-left: 12px;
   border-top-left-radius: 50px;
 }
 

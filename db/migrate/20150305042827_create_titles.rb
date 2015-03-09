@@ -4,6 +4,7 @@ class CreateTitles < ActiveRecord::Migration
       t.integer :character_id
       t.integer :peerage_id
       t.integer :realm_id
+      t.integer :ethny_id
       t.text :description
 
       t.timestamps

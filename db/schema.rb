@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150305043531) do
 
   create_table "character_ethnies", force: :cascade do |t|
     t.integer  "character_id"
-    t.integer  "ethnie_id"
+    t.integer  "ethny_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150305043531) do
     t.integer  "character_id"
     t.integer  "peerage_id"
     t.integer  "realm_id"
+    t.integer  "ethny_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

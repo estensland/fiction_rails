@@ -1,25 +1,87 @@
-<div class="sa-container">
-  <table class="sa-table">
-    <thead>
-      <tr>
-        <th>
-          Attribute
-        </th>
-        <th>
-          Value
-        </th>
-      </tr>
-    </thead>
-    <% @attributes.each do |attr| %>
-      <tr>
-        <td>
-          <%= attr.first %>:
-        </td>
-        <td>
-          <%= attr.last %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+<div class="sa-edit-bar">
   <a class="sa-edit-link" href=<%= sa_link(@model, :edit) %>>Edit Record</a>
+</div>
+<div class="sa-container">
+  <div class="sa-record-container sa-sub-container">
+    <h3>Record:</h3>
+    <table class="sa-table">
+      <thead>
+        <tr>
+          <th>
+            Attribute
+          </th>
+          <th>
+            Value
+          </th>
+        </tr>
+      </thead>
+      <% @attributes.each do |attr| %>
+        <tr>
+          <td>
+            <%= attr.first %>:
+          </td>
+          <td>
+            <%= attr.last %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="sa-belongs-to-container sa-sub-container">
+    <h3>Belongs To Relationships:</h3>
+
+    <table class="sa-table">
+      <thead>
+        <tr>
+          <th>
+            Association
+          </th>
+          <th>
+            Object
+          </th>
+        </tr>
+      </thead>
+      <% @associations[:one].each do |assoc| %>
+        <tr>
+          <td>
+            <%= assoc[:name] %>:
+          </td>
+          <td>
+            <a href="<%= sa_link(assoc[:object]) %>"><%= assoc[:model_name] %></a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="sa-has-many-container sa-sub-container">
+    <h3>Has Many Relationships:</h3>
+    <table class="sa-table">
+      <thead>
+        <tr>
+          <th>
+            Association
+          </th>
+          <th>
+            Object
+          </th>
+          <th>
+            Count
+          </th>
+        </tr>
+      </thead>
+      <% @associations[:multiple].each do |assoc| %>
+        <tr>
+          <td>
+            <%= assoc[:name] %>:
+          </td>
+          <td>
+            <a href="<%= sa_model_path(sa_model: assoc[:model_name], associations_of_model: @model.class.name, associations_of_id: @model.id, association: assoc[:name]) %>"><%= assoc[:model_name] %></a>
+          </td>
+          <td>
+            <%= assoc[:count] %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
