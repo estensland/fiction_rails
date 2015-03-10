@@ -47,6 +47,7 @@ class StationAgentController < ApplicationController
 
     @attributes = @model.attributes
     @attr_hash = @model.class.columns_hash
+
     @associations = {multiple: [], one: []}
     @model.class.reflect_on_all_associations.each do |assoc|
       res = @model.send(assoc.name)
@@ -59,41 +60,38 @@ class StationAgentController < ApplicationController
       end
     end
   end
-  
+
   def yaml_file?
     File.exist?("#{Rails.root}/config/station_agent.yml")
   end
-  
+
   def load_yaml
     @yaml = YAML.load_file("#{Rails.root}/config/station_agent.yml")
   end
-  
+
   def has_yaml_override?(model)
     @yaml.has_key?(model)
   end
-  
+
   def has_yaml_attr?(yaml_data, first, array_value = nil)
     if yaml_data.has_key?(first)
-      if array_value.present?
-        yaml_data[first].include?(array_value) 
-      else
-        true
-      end
+      array_value.present? ? yaml_data[first].include?(array_value) : true
     end
   end
-  
+
   def has_yaml_ignore_columns?(yaml_data)
     has_yaml_ignore?(yaml_data, 'ignore_columns')
   end
-  
+
   def has_yaml_ignore_model?(yaml_data, model)
     has_yaml_ignore?(yaml_data, 'ignore_models', model)
   end
-  
+
   def remove_ignored_columns(attributes, yaml_data)
     if yaml_data['ignored_columns'].include?('timestamps')
       yaml_data['ignored_columns'] << 'created_at' << 'updated_at'
     end
+
     attributes.except!(*yaml_data['ignored_columns'])
     attributes
   end
