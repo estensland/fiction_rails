@@ -39,6 +39,24 @@ class StationAgentController < ApplicationController
     object.save
     redirect_to request.referer
   end
+  
+  def new_anything
+    @model = params['sa_model'].capitalize.constantize.new
+
+    @attributes = @model.attributes
+    @attr_hash = @model.class.columns_hash
+    render :show_anything
+  end
+  
+  def create_anything
+    attribs = params[params['sa_model'].downcase]
+    object = params['sa_model'].new
+    attribs.each do |attr, val|
+      object.send("#{attr}=", val)
+    end
+    object.save
+    redirect_to request.referer
+  end
 
   private
 
