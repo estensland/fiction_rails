@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305043531) do
+ActiveRecord::Schema.define(version: 20150314125003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20150305043531) do
   create_table "character_ethnies", force: :cascade do |t|
     t.integer  "character_id"
     t.integer  "ethny_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "character_houses", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "house_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150305043531) do
     t.string   "nickname"
     t.string   "fighting_class"
     t.string   "real_person"
+    t.string   "non_human"
     t.text     "description"
     t.integer  "house_id"
     t.integer  "title_id"
