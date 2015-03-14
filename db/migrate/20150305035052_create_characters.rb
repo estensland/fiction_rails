@@ -8,6 +8,7 @@ class CreateCharacters < ActiveRecord::Migration
       t.string :nickname
       t.string :fighting_class
       t.string :real_person
+      t.string :non_human
       t.text :description
 
       t.integer :house_id
