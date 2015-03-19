@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150314125003) do
   create_table "character_houses", force: :cascade do |t|
     t.integer  "character_id"
     t.integer  "house_id"
+    t.boolean  "married_house"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

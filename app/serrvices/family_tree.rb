@@ -4,7 +4,7 @@ class FamilyTree
     @character = opts[:character]
     @tree_json = generate_json
   end
-  
+
   def generate_json
     @character.family
   end
