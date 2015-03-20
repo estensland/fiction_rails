@@ -27,4 +27,27 @@ class Character < ActiveRecord::Base
       self.houses << self.primary_house
     end
   end
+
+  def limited_ancestors(num_generations)
+    count = 0
+
+    ids = []
+    generation_ids = parents.compact.map(&:id)
+    while (count < num_generations) && (generation_ids.length > 0)
+      next_gen_ids = []
+      ids += generation_ids
+
+      until generation_ids.empty?
+        ids.unshift(generation_ids.shift)
+        next_gen_ids += gclass.find(ids.first).parents.compact.map(&:id)
+      end
+      generation_ids = next_gen_ids
+      count += 1
+    end
+    gclass.where(id: ids)
+  end
+
+  def limited_descendants(num_generations)
+
+  end
 end
