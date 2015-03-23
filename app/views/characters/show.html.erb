@@ -1,6 +1,28 @@
-<h2><%= @character.bailic_name %></h2>
+<h2><%= #@character.bailic_name %></h2>
 
-<% @tree.tree_json.each do |id, char| %>
-  <p><%= char %></p>
-<% end %>
+<%# @tree.tree_json.each do |id, char| %>
+  <p><%= #char %></p>
+<% #end %>
+
+<!-- DEMO TEST FOR CSS CREATION -->
+
+<ul>
+    <li class="parentless">GPA</li>
+    <li class="marriage">
+        <ul class="children">
+            <li class="parented">Uncle</li>
+            <li class="marriage"></li>
+            <li class="parentless">Aunt</li>
+            <li class="parented">Father</li>
+            <li class="marriage">
+                <ul class="children">
+                    <li>Son</li>
+                    <li>Daughter</li>
+                </ul>
+            </li>
+            <li class="parentless">Mother</li>
+        </ul>
+    </li>
+    <li class="parentless">GMA</li>
+</ul>
 

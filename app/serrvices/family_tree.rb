@@ -18,6 +18,10 @@ class FamilyTree
     res
   end
 
+  def method_name
+
+  end
+
   # slightly modified from: http://stackoverflow.com/questions/8301566/find-key-value-pairs-deep-inside-a-hash-containing-an-arbitrary-number-of-nested/16681085#16681085
 
   def deep_find(key, object, found=nil)
