@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'sa/:sa_model/:sa_id' => 'station_agent#show_anything', as: :sa_show
   get 'sa/:sa_model/:sa_id/edit' => 'station_agent#edit_anything', as: :sa_edit
   post 'sa/:sa_model/:sa_id' => 'station_agent#update_anything', as: :sa_update
+
+  get 'characters/:id' => 'characters#show', as: :character_show
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
