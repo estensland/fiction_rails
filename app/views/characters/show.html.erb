@@ -1,16 +1,60 @@
+
+
+<%= family_tree_process(@tree).html_safe %>
+
+<!-- <ul class="family_tree">
+<% @tree.each do |node| %>
+  <% if node.is_a?(Hash) %>
+
+    <li class="parentless">
+      <%= "#{node[:bailic_name]}" %>
+    </li>
+  <% else %>
+
+    <li class="marriage">
+     <% if node.length > 0 %>
+      <ul class="children">
+      <% node.each do |child| %>
+        <li class="parented">
+          <%= "#{child.first[:bailic_name].strip}" %>
+        </li>
+        <% if child.length > 1 %>
+          <li class="marriage">
+            <% if child[1].length > 1 %>
+              <ul class="children">
+                <li class="parented">
+                  <%= "#{child[1].first.first[:bailic_name]}" %>
+                </li>
+                <li class="parented">
+                  <%= "#{child[1].last.first[:bailic_name]}" %>
+                </li>
+              </ul>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="parentless">
+          <%= "#{child.last[:bailic_name]}" %>
+        </li>
+      <% end %>
+      </ul>
+     <% end %>
+    </li>
+  <% end %>
+<% end %>
+
+</ul>
+
 <ul class="family_tree">
     <li class="parentless">GPA</li>
-    <li class="marriage">  &nbsp
+    <li class="marriage">
         <ul class="children">
-            <br>
             <li class="parented">Uncle</li>
-            <li class="marriage"> &nbsp</li>
+            <li class="marriage"> </li>
             <li class="parentless">Aunt</li>
             <li class="parented">Father</li>
             <li class="marriage">
-                 &nbsp
+
                 <ul class="children">
-                    <br>
                     <li class="parented">Son</li>
                     <li class="parented">Daughter</li>
                 </ul>
@@ -20,4 +64,4 @@
     </li>
     <li class="parentless">GMA</li>
 </ul>
-
+%> -->

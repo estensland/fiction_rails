@@ -6,19 +6,36 @@
   list-style: none;
 }
 
+.children{
+  margin-top: 25px;
+}
 
 .marriage{
   text-align: center;
-  border-top: 1px solid black;
+  border-top: 2px solid black;
   margin-top: 6px;
+  margin-left: -12px;
+  margin-right: 0;
+  padding-right: 12px;
 }
 
 li{
   display: inline-block;
   vertical-align: top;
+  margin-right: 15px;
 }
-
 
 ul{
   padding: 0;
+}
+
+li.parented::before{
+  content: " ";
+  position: relative; top: -25px; left: 17px;
+  border: 1px solid black;
+  width: 50%; height: 20px;
+}
+
+.parented{
+  text-align: center;
 }

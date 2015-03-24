@@ -47,7 +47,7 @@ class Character < ActiveRecord::Base
     gclass.where(id: ids)
   end
 
-  def limited_descendants(num_generations)
-
+  def treed
+    FamilyTree.new(character: self).descendant_html
   end
 end

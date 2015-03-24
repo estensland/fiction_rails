@@ -10,6 +10,6 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find(params[:id])
-    @tree = FamilyTree.new(character: @character)
+    @tree = FamilyTree.new(character: @character).descendant_html
   end
 end
