@@ -21,6 +21,18 @@ class FamilyTree
   def descendant_html(relative = @character)
     res = []
     parented = relative == @character ? false : true
+
+    spouse_gender = relative.is_male? ? 'mother' : 'father'
+
+    if relative.children.where("#{spouse_gender}_id IS NULL").length > 0
+      res << {bailic_name: '???', native_name: '???', house: '???'}
+      child_store = {child_store: true, children: []}
+      relative.children.where("#{spouse_gender}_id IS NULL").each do |child|
+        child_store[:children] += descendant_html(child)
+      end
+      res << child_store
+    end
+
     res << {bailic_name: relative.bailic_name, native_name: relative.native_name, house: relative.primary_house.try(:name), parented: parented}
     spouses = relative.spouses
 
