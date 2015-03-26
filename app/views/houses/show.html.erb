@@ -1,1 +1,9 @@
+<h2> <%= @house.name %> </h2>
 
+<ul class="house_character_list">
+  <% @characters.each do |char| %>
+    <li class="house_character">
+      <%= "#{char.bailic_name} #{char.native_name}" %>
+    </li>
+  <% end %>
+</ul>
