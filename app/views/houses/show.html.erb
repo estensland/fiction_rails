@@ -3,7 +3,11 @@
 <ul class="house_character_list">
   <% @characters.each do |char| %>
     <li class="house_character">
-      <%= "#{char.bailic_name} #{char.native_name}" %>
+      <% houseage = char.primary_house ? " of House #{char.primary_house.name}" : " " %>
+      <a href="/characters/<%=char.id%>"> <%= "#{char.bailic_name} #{char.native_name} #{houseage}" %> </a>
     </li>
   <% end %>
 </ul>
+
+
+<%= render "shared/page_numbers" %>

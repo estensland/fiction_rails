@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   get 'characters/:id' => 'characters#show', as: :character_show
 
+  get 'houses/' => 'houses#index', as: :houses
+  get 'houses/:id' => 'houses#show', as: :house_show
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

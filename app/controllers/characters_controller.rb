@@ -10,6 +10,7 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find(params[:id])
+    @houseage = @character.primary_house ? " of House #{@character.primary_house.name}" : " "
     @tree = FamilyTree.new(character: @character).descendant_html
   end
 end

@@ -1,6 +1,63 @@
 
+<h2>
+  <%= "#{@character.bailic_name} #{@character.native_name} #{@houseage}" %>
+</h2>
 
-<%= family_tree_process(@tree, true).html_safe %>
+<table>
+
+  <tr>
+    <td>
+      Bailic Name
+    </td>
+    <td>
+      <%= @character.bailic_name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      Native Name:
+    </td>
+    <td>
+      <%= @character.native_name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      Bailic Translation:
+    </td>
+    <td>
+      <%= @character.bailic_translation %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      Native Translation:
+    </td>
+    <td>
+      <%= @character.native_translation %>
+    </td>
+  </tr>
+
+  <% if @houseage %>
+    <tr>
+      <td>
+        Primary House:
+      </td>
+      <td>
+        <%= @houseage %>
+      </td>
+    </tr>
+  <% end %>
+
+
+</table>
+
+
+
+<%# family_tree_process(@tree, true).html_safe %>
 
 <!-- <ul class="family_tree">
 <% @tree.each do |node| %>

@@ -1,0 +1,6 @@
+
+
+<% 1.upto(@total_pages) do |i| %>
+  <% params = request.query_string.gsub(/(page=)(\d+)/, '\1' + i.to_s) %>
+  <a href="<%= "#{request.path_info}?#{params}" %> "> <%= i %> </a>
+<% end %>
