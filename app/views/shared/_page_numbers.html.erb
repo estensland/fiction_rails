@@ -1,6 +1,16 @@
-
-
-<% 1.upto(@total_pages) do |i| %>
-  <% params = request.query_string.gsub(/(page=)(\d+)/, '\1' + i.to_s) %>
-  <a href="<%= "#{request.path_info}?#{params}" %> "> <%= i %> </a>
+<% if @total_pages > 1 %>
+  <div class="pagnation-bar">
+    <% 1.upto(@total_pages) do |i| %>
+      <% if request.query_string.match(/page/) %>
+        <% params = request.query_string.gsub(/(page=)(\d+)/, '\1' + i.to_s) %>
+      <% else %>
+        <% if request.query_string.length > 1 %>
+          <% params = request.query_string << "&page=#{i.to_s}" %>
+        <% else %>
+          <% params = "page=#{i.to_s}" %>
+        <% end %>
+      <% end %>
+      <a class="pagnation-link" href="<%= "#{request.path_info}?#{params}" %> "> <%= i %> </a>
+    <% end %>
+  </div>
 <% end %>

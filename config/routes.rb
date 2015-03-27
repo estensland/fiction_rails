@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   get 'sa/:sa_model/:sa_id/edit' => 'station_agent#edit_anything', as: :sa_edit
   post 'sa/:sa_model/:sa_id' => 'station_agent#update_anything', as: :sa_update
 
-  get 'characters/:id' => 'characters#show', as: :character_show
+  get 'characters/:id' => 'characters#show', as: :character
 
   get 'houses/' => 'houses#index', as: :houses
-  get 'houses/:id' => 'houses#show', as: :house_show
+  get 'houses/:id' => 'houses#show', as: :house
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

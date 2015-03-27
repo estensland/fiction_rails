@@ -3,55 +3,73 @@
   <%= "#{@character.bailic_name} #{@character.native_name} #{@houseage}" %>
 </h2>
 
-<table>
+<table class="main-table">
+  <thead>
+    <tr>
+      <th class="left-tab-header">
+        Attribute
+      </th>
+      <th class="right-tab-header">
+        Value
+      </th>
+    </tr>
+  </thead>
 
-  <tr>
-    <td>
-      Bailic Name
-    </td>
-    <td>
-      <%= @character.bailic_name %>
-    </td>
-  </tr>
+  <% rows = ['Bailic Name', 'Bailic Translation', 'Native Name', 'Native Translation', 'Nickname'] %>
+  <% name_rows = ['Father', 'Mother'] %>
 
-  <tr>
-    <td>
-      Native Name:
-    </td>
-    <td>
-      <%= @character.native_name %>
-    </td>
-  </tr>
+  <% rows.each do |row| %>
+    <% if @character.send(row.underscore.gsub(/\s/, '_')) %>
+      <tr>
+        <td>
+          <%= row %>
+        </td>
+        <td>
+          <%= @character.send(row.underscore.gsub(/\s/, '_')) %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
 
-  <tr>
-    <td>
-      Bailic Translation:
-    </td>
-    <td>
-      <%= @character.bailic_translation %>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      Native Translation:
-    </td>
-    <td>
-      <%= @character.native_translation %>
-    </td>
-  </tr>
-
-  <% if @houseage %>
+  <% if @character.primary_house %>
     <tr>
       <td>
-        Primary House:
+        Primary House
       </td>
       <td>
-        <%= @houseage %>
+        <a href="<%= house_path(@character.primary_house) %>"> <%= @character.primary_house.name %> </a>
       </td>
     </tr>
   <% end %>
 
+  <% name_rows.each do |row| %>
+    <% if @character.send(row.underscore.gsub(/\s/, '_')) %>
+      <tr>
+        <td>
+          <%= row %>
+        </td>
+        <td>
+          <% char = @character.send(row.underscore.gsub(/\s/, '_')) %>
+          <% houseage = char.primary_house ? " of House #{char.primary_house.name}" : " " %>
+          <a href="<%= character_path(char) %>" > <%= "#{char.bailic_name} #{char.native_name} #{houseage}" %> </a>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+
+  <% if @character.children.length > 0 %>
+    <% @character.children.each do |child| %>
+      <tr>
+        <td>
+          Child
+        </td>
+        <td>
+          <% houseage = child.primary_house ? " of House #{child.primary_house.name}" : " " %>
+          <a href="<%= character_path(child) %>" > <%= "#{child.bailic_name} #{child.native_name} #{houseage}" %> </a>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
 
 </table>
 
