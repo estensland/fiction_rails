@@ -5,7 +5,7 @@ class CharactersController < ApplicationController
 
   def index
     params['offset'] ||= 0
-    @characters.limit(100).offset(params['offset'])
+    @characters = Character.limit(100).offset(params['offset'])
   end
 
   def show

@@ -1,1 +1,40 @@
+<h2> <%= @realm.name %> </h2>
 
+<table class="main-table">
+  <thead>
+    <tr>
+      <th class="left-tab-header">
+        Attribute
+      </th>
+      <th class="right-tab-header">
+        Value
+      </th>
+    </tr>
+  </thead>
+
+  <% rows = ['Name', 'Translation', 'Description'] %>
+
+  <% rows.each do |row| %>
+    <% if @realm.send(row.underscore.gsub(/\s/, '_')) %>
+      <tr>
+        <td>
+          <%= row %>
+        </td>
+        <td>
+          <%= @realm.send(row.underscore.gsub(/\s/, '_')) %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+
+  <% if @realm.parent.present? %>
+    <tr>
+      <td>
+        Vassal of
+      </td>
+      <td>
+        <%= @realm.parent.name %>
+      </td>
+    </tr>
+  <% end %>
+</table>
