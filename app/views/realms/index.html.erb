@@ -1,0 +1,5 @@
+<ul>
+  <% @realms.each do |realm| %>
+    <li><a href="realms/<%= realm.id %>"><%= realm.name %></a></li>
+  <% end %>
+</ul>
