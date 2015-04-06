@@ -1,0 +1,28 @@
+<h1> Peerages </h1>
+
+<table class="main-table">
+  <thead>
+    <tr>
+      <th class="left-tab-header">
+        Title
+      </th>
+      <th class="right-tab-header">
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <% @peerages.order(:authority_level).each do |peer| %>
+    <% if @realm.send(row.underscore.gsub(/\s/, '_')) %>
+      <tr>
+        <td>
+          <%= peer.title %>
+        </td>
+        <td>
+          <%= peer.desrcription %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
