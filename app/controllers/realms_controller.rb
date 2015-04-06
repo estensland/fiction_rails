@@ -5,7 +5,7 @@ class RealmsController < ApplicationController
 
   def index
     params['offset'] ||= 0
-    Realms.limit(100).offset(params['offset'])
+    @realms = Realm.limit(100).offset(params['offset'])
   end
 
   def show
