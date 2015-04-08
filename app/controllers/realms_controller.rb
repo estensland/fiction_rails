@@ -5,7 +5,13 @@ class RealmsController < ApplicationController
 
   def index
     params['offset'] ||= 0
-    @realms = Realm.limit(100).offset(params['offset'])
+    params['page'] ||= 1
+    @limit = params['number'] || 30
+
+    @total_pages = (Realm.count / @limit.to_f).ceil
+    offset = ((params['page'].to_i - 1) * @limit.to_i)
+
+    @realms = Realm.limit(@limit).offset(params['offset'])
   end
 
   def show
