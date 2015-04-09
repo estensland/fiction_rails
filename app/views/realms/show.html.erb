@@ -27,6 +27,17 @@
     <% end %>
   <% end %>
 
+  <% if @prim_title.present? %>
+        <tr>
+      <td>
+        Primary Title
+      </td>
+      <td>
+        <%= @prim_title %>
+      </td>
+    </tr>
+  <% end %>
+
   <% if @realm.parent.present? %>
     <tr>
       <td>
@@ -37,4 +48,5 @@
       </td>
     </tr>
   <% end %>
+
 </table>

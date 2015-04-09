@@ -16,5 +16,6 @@ class RealmsController < ApplicationController
 
   def show
     @realm = Realm.find(params[:id])
+    @prim_title = @realm.primary_title.present? ? @realm.primary_title.peerage.title : ''
   end
 end
