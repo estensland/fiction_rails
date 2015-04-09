@@ -1,6 +1,6 @@
 class Realm < ActiveRecord::Base
   has_ancestry
-  belongs_to :peerage
+  belongs_to :title
 
   def main_title
     if self.primary_title && self.primary_title.peerage
