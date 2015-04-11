@@ -1,0 +1,9 @@
+<h1> <%= @timeline.name %> </h1>
+
+<ul>
+  <% @events.each do |event| %>
+    <li>
+      <a href="<%= timeline_event_path(event.id) %>" > <%= "#{event.year} - #{event.name}" %></a>
+    </li>
+  <% end %>
+</ul>
