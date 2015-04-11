@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   get 'realms/' => 'realms#index', as: :realms
   get 'realms/:id' => 'realms#show', as: :realm
 
+  get 'timelines/' => 'timelines#index', as: :timelines
+  get 'timelines/:id' => 'timelines#show', as: :timeline
+
+  get 'timeline_events/' => 'timeline_events#index', as: :timeline_events
+  get 'timeline_events/:id' => 'timeline_events#show', as: :timeline_event
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
