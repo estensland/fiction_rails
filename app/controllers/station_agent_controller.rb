@@ -49,14 +49,9 @@ class StationAgentController < ApplicationController
     render :show_anything
   end
 
-  def create_anything
-    attribs = params[params['sa_model'].downcase]
-    object = params['sa_model'].new
-    attribs.each do |attr, val|
-      object.send("#{attr}=", val)
-    end
-    object.save
-    redirect_to request.referer
+  def initialize_anything
+    @models = ActiveRecord::Base.descendants.map(&:name)
+    render :initialize_anything
   end
 
   private
@@ -80,9 +75,23 @@ class StationAgentController < ApplicationController
     end
   end
 
+  def get_all_models
+    @models = ActiveRecord::Base.descendants.map(&:name)
+
+    @models.reject! do |mod|
+      return true if mod == "ActiveRecord::SchemaMigration"
+      return false unless @sa_status
+      return true if has_yaml_ignore?(@load, 'ignore_models', mod)
+    end
+  end
+
   # yaml check
 
   def sa_on?
+    @sa_status = sa_check
+  end
+
+  def sa_check
     return true unless has_yaml_file?
 
     load_yaml

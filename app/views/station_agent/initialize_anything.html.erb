@@ -1,0 +1,7 @@
+<ul>
+  <% @models.each do |model| %>
+      <li>
+        <a href="<%= sa_new_path(sa_model: model) %>"><%= model %>:</a>
+      </li>
+  <% end %>
+</ul>

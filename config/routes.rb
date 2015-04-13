@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'welcome#index'
   get 'sa/' => 'station_agent#show_all_models', as: :sa
+  get 'sa/initalize_anything' => 'station_agent#initalize_anything', as: :sa_initialize
   get 'sa/:sa_model' => 'station_agent#show_all_of_a_model', as: :sa_model
   get 'sa/:sa_model/:sa_id' => 'station_agent#show_anything', as: :sa_show
   get 'sa/:sa_model/:sa_id/edit' => 'station_agent#edit_anything', as: :sa_edit
+  get 'sa/:sa_model/:sa_id/new' => 'station_agent#new_anything', as: :sa_new
   post 'sa/:sa_model/:sa_id' => 'station_agent#update_anything', as: :sa_update
 
   get 'characters/:id' => 'characters#show', as: :character
