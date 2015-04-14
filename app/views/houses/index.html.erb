@@ -1,0 +1,12 @@
+<h2> Houses </h2>
+
+<ul class="house_list">
+  <% @houses.each do |house| %>
+    <li class="house_listing">
+      <a href="<%=house_path(house.id)%>"> <%= "#{house.name}" %> </a>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= render "shared/page_numbers" %>

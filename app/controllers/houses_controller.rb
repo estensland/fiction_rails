@@ -6,7 +6,8 @@ class HousesController < ApplicationController
   def index
     @page = params['page'] || 1
     @limit = params['number'] || 10
-    offset = ((@page - 1) * @limit)
+    @total_pages = (House.count / @limit.to_f).ceil
+    offset = ((@page.to_i - 1) * @limit)
     @houses = House.limit(@limit).offset(offset)
   end
 

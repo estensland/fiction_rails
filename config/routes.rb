@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'sa/:sa_model/:sa_id/new' => 'station_agent#new_anything', as: :sa_new
   post 'sa/:sa_model/:sa_id' => 'station_agent#update_anything', as: :sa_update
 
+  get 'characters/' => 'characters#index', as: :characters
   get 'characters/:id' => 'characters#show', as: :character
 
   get 'houses/' => 'houses#index', as: :houses
@@ -21,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'realms/' => 'realms#index', as: :realms
   get 'realms/:id' => 'realms#show', as: :realm
+
+  get 'peerages/' => 'peerage#index', as: :peerages
 
   get 'timelines/' => 'timelines#index', as: :timelines
   get 'timelines/:id' => 'timelines#show', as: :timeline

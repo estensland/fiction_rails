@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314125003) do
+ActiveRecord::Schema.define(version: 20150411183603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,28 @@ ActiveRecord::Schema.define(version: 20150314125003) do
   end
 
   add_index "realms", ["ancestry"], name: "index_realms_on_ancestry", using: :btree
+
+  create_table "timeline_events", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "year"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timeline_timeline_events", force: :cascade do |t|
+    t.integer  "timeline_id"
+    t.integer  "timeline_event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timelines", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "titles", force: :cascade do |t|
     t.integer  "character_id"
