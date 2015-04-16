@@ -6,11 +6,17 @@ class TimelineController < ApplicationController
   def index
     params['offset'] ||= 0
     @timelines = Timeline.limit(100).offset(params['offset'])
+    @timelines.unshift(Timeline.new(name: 'Master Timeline'))
   end
 
   def show
-    @timeline = Timeline.find(params['id'])
-    @events = @timeline.timeline_events
+    if params['master']
+      @timeline = Timeline.new(name: 'Master Timeline')
+      @events = TimelineEvents.all
+    else
+      @timeline = Timeline.find(params['id'])
+      @events = @timeline.timeline_events
+    end
   end
 
 end

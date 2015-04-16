@@ -12,10 +12,14 @@
     </tr>
   </thead>
 
-  <% @timelines.order(:authority_level).each do |timeline| %>
+  <% @timelines.each do |timeline| %>
     <tr>
       <td>
-        <%= timeline.name %>
+        <% if timeline.id.present?%>
+          <a href="<%= timeline_path(timeline.path) %>"><%= timeline.name %></a>
+        <% else %>
+          <a href="<%= timeline_path(0, master: true) %>"><%= timeline.name %></a>
+        <% end %>
       </td>
       <td>
         <%= timeline.desrcription %>
