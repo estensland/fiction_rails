@@ -1,0 +1,10 @@
+.pagnation-bar{
+  margin-top: 5px;
+}
+
+.pagnation-bar .pagnation-link{
+  border-right: 1px solid black;
+  border-right: 1px solid black;
+  padding: 0 2px;
+  color: black;
+}
