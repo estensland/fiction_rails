@@ -1,0 +1,42 @@
+<h2>
+  Characters
+</h2>
+
+<table class="main-table">
+  <thead>
+    <tr>
+      <th class="left-tab-header">
+        Profile
+      </th>
+      <th>
+        Native Name
+      </th>
+      <th>
+        Bailic Name
+      </th>
+      <th class="right-tab-header">
+        Nickname
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @characters.each do |character| %>
+      <tr>
+        <td>
+          <a href="<%= character_path(character) %>"><%= character.id %></a>
+        </td>
+        <td>
+          <%= character.native_name%>
+        </td>
+        <td>
+          <%= character.bailic_name%>
+        </td>
+        <td>
+          <%= character.nickname%>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+
+</table>
