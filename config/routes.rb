@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'realms/' => 'realms#index', as: :realms
   get 'realms/:id' => 'realms#show', as: :realm
 
-  get 'peerages/' => 'peerage#index', as: :peerages
+  get 'peerages/' => 'peerages#index', as: :peerages
 
   get 'timelines/' => 'timelines#index', as: :timelines
   get 'timelines/:id' => 'timelines#show', as: :timeline

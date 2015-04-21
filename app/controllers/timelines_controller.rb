@@ -1,4 +1,4 @@
-class TimelineController < ApplicationController
+class TimelinesController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -12,7 +12,7 @@ class TimelineController < ApplicationController
   def show
     if params['master']
       @timeline = Timeline.new(name: 'Master Timeline')
-      @events = TimelineEvents.all
+      @events = TimelineEvent.all
     else
       @timeline = Timeline.find(params['id'])
       @events = @timeline.timeline_events
