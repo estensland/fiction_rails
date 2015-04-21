@@ -30,6 +30,21 @@ class Character < ActiveRecord::Base
     end
   end
 
+  def composite_name
+    name = ''
+    name << self.native_name << ' ' if self.native_name
+    name << self.bailic_name << ' ' if self.bailic_name
+    name << self.nickname << ' ' if self.nickname
+    if self.primary_house
+      if primary_house.name.match(/Tribe/)
+        name << "of #{self.primary_house.name}"
+      else
+        name << "of House #{self.primary_house.name}"
+      end
+    end
+    name
+  end
+
   def limited_ancestors(num_generations)
     count = 0
 
