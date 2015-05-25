@@ -1,0 +1,16 @@
+class Api::TimelineEventsController < ApplicationController
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  # protect_from_forgery with: :exception
+
+
+  def index
+    render json: TimelineEvents.all, status: 200
+  end
+
+
+  def show
+    render json: TimelineEvents.find(params['id']), status: 200
+  end
+
+end

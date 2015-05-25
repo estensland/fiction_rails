@@ -67,4 +67,8 @@ class Character < ActiveRecord::Base
   def treed
     FamilyTree.new(character: self).descendant_html
   end
+
+  def api_ready
+    self.to_json(:methods => [:houses, :primary_house, :father, :mother, :current_spouse])
+  end
 end
