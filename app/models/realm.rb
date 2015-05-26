@@ -6,8 +6,12 @@ class Realm < ActiveRecord::Base
   has_many :characters, through: :houses
 
   def main_title
-    if self.primary_title && self.primary_title.peerage
-      self.primary_title.peerage.title
+    if self.title && self.title.peerage
+      self.title.peerage.title
     end
+  end
+
+  def api_ready
+    self.to_json(:methods => [:main_title, :houses, :characters, :titles])
   end
 end

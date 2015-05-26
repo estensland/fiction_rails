@@ -4,4 +4,8 @@ class House < ActiveRecord::Base
   has_many :characters, through: :character_houses
 
   belongs_to :realm
+
+  def api_ready
+    self.to_json(:methods => [:primary_house_characters, :characters, :realm])
+  end
 end

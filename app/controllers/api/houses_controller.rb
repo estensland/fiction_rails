@@ -10,6 +10,6 @@ class Api::HouseController < ApplicationController
 
 
   def show
-    render json: House.find(params['id']), status: 200
+    render json: House.find(params['id']).api_ready, status: 200
   end
 end
