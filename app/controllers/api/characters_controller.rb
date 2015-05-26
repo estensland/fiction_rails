@@ -1,11 +1,11 @@
-class Api::CharacterController < ApplicationController
+class Api::CharactersController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
 
 
   def index
-    render json: Character.all, status: 200
+    render json: Character.limit(30), status: 200
   end
 
 

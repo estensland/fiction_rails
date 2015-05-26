@@ -14,22 +14,22 @@ Rails.application.routes.draw do
   get 'sa/:sa_model/:sa_id/new' => 'station_agent#new_anything', as: :sa_new
   post 'sa/:sa_model/:sa_id' => 'station_agent#update_anything', as: :sa_update
 
-  get 'characters/' => 'characters#index', as: :characters
-  get 'characters/:id' => 'characters#show', as: :character
+  # get 'characters/' => 'characters#index', as: :characters
+  # get 'characters/:id' => 'characters#show', as: :character
 
-  get 'houses/' => 'houses#index', as: :houses
-  get 'houses/:id' => 'houses#show', as: :house
+  # get 'houses/' => 'houses#index', as: :houses
+  # get 'houses/:id' => 'houses#show', as: :house
 
-  get 'realms/' => 'realms#index', as: :realms
-  get 'realms/:id' => 'realms#show', as: :realm
+  # get 'realms/' => 'realms#index', as: :realms
+  # get 'realms/:id' => 'realms#show', as: :realm
 
-  get 'peerages/' => 'peerages#index', as: :peerages
+  # get 'peerages/' => 'peerages#index', as: :peerages
 
-  get 'timelines/' => 'timelines#index', as: :timelines
-  get 'timelines/:id' => 'timelines#show', as: :timeline
+  # get 'timelines/' => 'timelines#index', as: :timelines
+  # get 'timelines/:id' => 'timelines#show', as: :timeline
 
-  get 'timeline_events/' => 'timeline_events#index', as: :timeline_events
-  get 'timeline_events/:id' => 'timeline_events#show', as: :timeline_event
+  # get 'timeline_events/' => 'timeline_events#index', as: :timeline_events
+  # get 'timeline_events/:id' => 'timeline_events#show', as: :timeline_event
 
   namespace :api, defaults: {format: :json} do
 		resources :timeline_events, only: [:index, :show]
@@ -38,4 +38,5 @@ Rails.application.routes.draw do
 		resources :houses, only: [:index, :show]
 		resources :characters, only: [:index, :show]
   end
+  get '*path' => 'welcome#index'
 end
