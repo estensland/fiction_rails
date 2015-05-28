@@ -1,3 +1,3 @@
 == README
 
-This is a work in progress, being used for me to practice rails skills I do not use in my job everyday
+This is a work in progress, being used for me to practice rails skills I do not use in my job everyday. Currently switching it to use Angular
