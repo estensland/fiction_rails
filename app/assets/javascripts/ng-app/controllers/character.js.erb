@@ -3,7 +3,7 @@ angular.module('myApp.home', ['ngRoute', 'templates'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/character/:id', {
-    controller: 'CharactersCtrl',
+    controller: 'CharacterCtrl',
     templateUrl: '<%= asset_path("character.html") %>',
     resolve: {
       jsonGrab: ['$http', '$route', function($http, $route) {
