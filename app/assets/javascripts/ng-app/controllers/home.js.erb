@@ -5,19 +5,9 @@ angular.module('myApp.home', ['ngRoute', 'templates'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
     controller: 'HomeCtrl',
-    templateUrl: '<%= asset_path("home.html") %>',
-    resolve: {
-      jsonGrab: ['$http', '$route', function($http, $route) {
-        return $http.get('/api/characters/54').then(function(response) {
-          return response.data;
-        });
-      }],
-    }
+    templateUrl: '<%= asset_path("home.html") %>'
   });
 }])
-.controller('HomeCtrl', ['$scope', 'jsonGrab', function($scope, jsonGrab) {
-  $scope.json = jsonGrab;
+.controller('HomeCtrl', ['$scope', function($scope) {
   console.log('looper')
-  // console.log($scope.json)
-
 }]);
