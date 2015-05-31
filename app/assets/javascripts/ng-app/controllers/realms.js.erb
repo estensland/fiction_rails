@@ -1,0 +1,20 @@
+'use strict';
+angular.module('myApp.home', ['ngRoute', 'templates'])
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/realms', {
+    controller: 'RealmsCtrl',
+    templateUrl: '<%= asset_path("realms.html") %>',
+    resolve: {
+      jsonGrab: ['$http', '$route', function($http, $route) {
+        return $http.get('/api/realms/').then(function(response) {
+          return response.data;
+        });
+      }],
+    }
+  });
+}])
+.controller('RealmsCtrl', ['$scope', 'jsonGrab', function($scope, jsonGrab) {
+  $scope.json = jsonGrab;
+  console.log($scope.json)
+}]);
