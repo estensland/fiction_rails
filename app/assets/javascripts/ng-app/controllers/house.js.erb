@@ -1,0 +1,19 @@
+'use strict';
+angular.module('myApp.home', ['ngRoute', 'templates'])
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/house/:id', {
+    controller: 'HouseCtrl',
+    templateUrl: '<%= asset_path("character.html") %>',
+    resolve: {
+      jsonGrab: ['$http', '$route', function($http, $route) {
+        return $http.get('/api/house/' + $route.current.params.id).then(function(response) {
+          return response.data;
+        });
+      }],
+    }
+  });
+}])
+.controller('HouseCtrl', ['$scope', 'jsonGrab', function($scope, jsonGrab) {
+  $scope.json = jsonGrab;
+}]);
