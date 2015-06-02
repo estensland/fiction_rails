@@ -1,0 +1,20 @@
+angular.module('myApp.home', ['ngRoute', 'templates'])
+'use strict';
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/timelines/', {
+    controller: 'TimelineCtrl',
+    templateUrl: '<%= asset_path("timeline.html") %>',
+    resolve: {
+      jsonGrab: ['$http', '$route', function($http, $route) {
+        return $http.get('/api/timelines/').then(function(response) {
+          return response.data;
+        });
+      }],
+    }
+  });
+}])
+.controller('TimelineCtrl', ['$scope', 'jsonGrab', function($scope, jsonGrab) {
+  $scope.json = jsonGrab;
+  console.log($scope.json)
+}]);
