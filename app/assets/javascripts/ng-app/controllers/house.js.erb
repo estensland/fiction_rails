@@ -1,5 +1,5 @@
 'use strict';
-angular.module('myApp.home', ['ngRoute', 'templates'])
+angular.module('myApp.house', ['ngRoute', 'templates'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/houses/:id', {
@@ -16,4 +16,5 @@ angular.module('myApp.home', ['ngRoute', 'templates'])
 }])
 .controller('HouseCtrl', ['$scope', 'jsonGrab', function($scope, jsonGrab) {
   $scope.json = jsonGrab;
+  console.log($scope.json)
 }]);
