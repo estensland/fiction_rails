@@ -35,8 +35,8 @@ Rails.application.routes.draw do
 		resources :timeline_events, only: [:index, :show]
 		resources :timelines, only: [:index, :show]
 		resources :realms, only: [:index, :show]
-		resources :houses, only: [:index, :show]
 		resources :characters, only: [:index, :show]
+    resources :houses, only: [:index, :show]
   end
   get '*path' => 'welcome#index'
 end

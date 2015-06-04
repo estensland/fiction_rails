@@ -3,8 +3,8 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.home',
-  'myApp.character',
   'myApp.characters',
+  'myApp.character',
   'myApp.house',
   'myApp.houses',
   'myApp.realm',
