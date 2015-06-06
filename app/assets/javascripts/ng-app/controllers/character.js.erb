@@ -16,5 +16,5 @@ angular.module('myApp.character', ['ngRoute', 'templates'])
 }])
 .controller('CharacterCtrl', ['$scope', 'jsonGrab', function($scope, jsonGrab) {
   $scope.json = jsonGrab;
-  console.log($scope.json)
+  $scope.attributes = Object.keys($scope.json);
 }]);

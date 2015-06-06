@@ -10,5 +10,6 @@ angular.module('myApp', [
   'myApp.realm',
   'myApp.realms',
   'myApp.timeline',
-  'myApp.timelines'
+  'myApp.timelines',
+  'myApp.directives.infoPanel'
 ])

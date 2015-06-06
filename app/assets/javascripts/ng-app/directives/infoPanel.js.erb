@@ -1,0 +1,15 @@
+angular.module('myApp.directives.infoPanel', [])
+  .directive('infoPanel', function() {
+    return {
+      constrict: 'E',
+      scope: {
+        attributes: '=',
+        object: '='
+      },
+
+      templateUrl: '<%= asset_path("infoPanel.html") %>',
+      controller: function($scope, $http) {
+
+      }
+    }
+  })
