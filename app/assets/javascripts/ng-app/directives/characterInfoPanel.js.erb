@@ -1,0 +1,16 @@
+angular.module('myApp.directives.characterInfoPanel', [])
+  .directive('characterInfoPanel', function() {
+    return {
+      constrict: 'E',
+      scope: {
+        attributes: '=',
+        partial: '=',
+        object: '='
+      },
+
+      templateUrl: '<%= asset_path("characterInfoPanel.html") %>',
+      controller: function($scope, $http) {
+
+      }
+    }
+  })

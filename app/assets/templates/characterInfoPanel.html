@@ -1,0 +1,33 @@
+{{attributes}}
+<h1>{{object.bailic_name}} {{object.native_name}}</h1>
+
+<table>
+  <tr>
+    <td>Bailic Name:</td>
+    <td>{{object.bailic_name}}</td>
+  </tr>
+  <tr>
+    <td> Native Name:</td>
+    <td>{{object.native_name}}</td>
+  </tr>
+  <tr>
+    <td> Nick Name:</td>
+    <td>{{object.nickname}}</td>
+  </tr>
+  <tr>
+    <td> Real Person:</td>
+    <td>{{object.real_person}}</td>
+  </tr>
+  <tr>
+    <td> Fighting Class:</td>
+    <td>{{object.fighting_class}}</td>
+  </tr>
+  <tr>
+    <td> Father:</td>
+    <td><a ng-href="#/characters/{{object.father.id}}">{{object.father.bailic_name}}</a></td>
+  </tr>
+  <tr>
+    <td> Mother:</td>
+    <td><a ng-href="#/characters/{{object.mother.id}}">{{object.mother.bailic_name}}</a></td>
+  </tr>
+</table>

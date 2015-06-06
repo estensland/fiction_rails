@@ -69,6 +69,6 @@ class Character < ActiveRecord::Base
   end
 
   def api_ready
-    self.to_json(:methods => [:houses, :primary_house, :father, :mother, :current_spouse, :peerages, :parents, :grandparents, :great_grandparents, :uncles_and_aunts, :cousins, :nieces_and_nephews, :children, :grandchildren, :great_grandchildren])
+    self.to_json(:methods => [:houses, :composite_name, :primary_house, :father, :mother, :current_spouse, :peerages, :parents, :grandparents, :great_grandparents, :uncles_and_aunts, :cousins, :nieces_and_nephews, :children, :grandchildren, :great_grandchildren])
   end
 end

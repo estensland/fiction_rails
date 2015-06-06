@@ -11,5 +11,5 @@ angular.module('myApp', [
   'myApp.realms',
   'myApp.timeline',
   'myApp.timelines',
-  'myApp.directives.infoPanel'
+  'myApp.directives.characterInfoPanel'
 ])
