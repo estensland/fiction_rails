@@ -11,6 +11,8 @@ class CreateCharacters < ActiveRecord::Migration
       t.string :non_human
       t.text :description
 
+      t.string :composite_name
+
       t.integer :house_id
       t.integer :title_id
 

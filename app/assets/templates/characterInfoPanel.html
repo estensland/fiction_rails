@@ -1,6 +1,4 @@
 {{attributes}}
-<h1>{{object.bailic_name}} {{object.native_name}}</h1>
-
 <table>
   <tr>
     <td>Bailic Name:</td>
@@ -15,6 +13,10 @@
     <td>{{object.nickname}}</td>
   </tr>
   <tr>
+    <td> Primary House:</td>
+    <td><a ng-href="#/houses/{{object.primary_house.id}}">{{object.primary_house.name}}</a></td>
+  </tr>
+  <tr>
     <td> Real Person:</td>
     <td>{{object.real_person}}</td>
   </tr>
@@ -24,10 +26,14 @@
   </tr>
   <tr>
     <td> Father:</td>
-    <td><a ng-href="#/characters/{{object.father.id}}">{{object.father.bailic_name}}</a></td>
+    <td><a ng-href="#/characters/{{object.father.id}}">{{object.father.composite_name}}</a></td>
   </tr>
   <tr>
     <td> Mother:</td>
-    <td><a ng-href="#/characters/{{object.mother.id}}">{{object.mother.bailic_name}}</a></td>
+    <td><a ng-href="#/characters/{{object.mother.id}}">{{object.mother.composite_name}}</a></td>
+  </tr>
+  <tr ng-repeat="child in object.children">
+    <td>Child:</td>
+    <td><a ng-href="#/characters/{{child.id}}">{{child.composite_name}}</a></td>
   </tr>
 </table>

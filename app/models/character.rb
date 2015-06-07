@@ -12,6 +12,7 @@ class Character < ActiveRecord::Base
   has_many :timeline_events, through: :timeline_event_relateds, source: :related, source_type: 'Character'
 
   after_create :merge_houses
+  after_save :genereate_composite_name
 
   def self.grab(name)
     self.where(bailic_name: name)
@@ -30,7 +31,7 @@ class Character < ActiveRecord::Base
     end
   end
 
-  def composite_name
+  def set_composite_name
     name = ''
     name << self.native_name << ' ' if self.native_name
     name << self.bailic_name << ' ' if self.bailic_name
@@ -70,5 +71,10 @@ class Character < ActiveRecord::Base
 
   def api_ready
     self.to_json(:methods => [:houses, :composite_name, :primary_house, :father, :mother, :current_spouse, :peerages, :parents, :grandparents, :great_grandparents, :uncles_and_aunts, :cousins, :nieces_and_nephews, :children, :grandchildren, :great_grandchildren])
+  end
+
+  private
+  def genereate_composite_name
+    self.update_column(:composite_name, set_composite_name)
   end
 end
