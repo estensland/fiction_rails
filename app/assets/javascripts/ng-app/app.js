@@ -3,6 +3,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.home',
+  'myApp.characterSearch',
   'myApp.characters',
   'myApp.character',
   'myApp.house',

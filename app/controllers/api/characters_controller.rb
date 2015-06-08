@@ -12,4 +12,8 @@ class Api::CharactersController < ApplicationController
   def show
     render json: Character.find(params['id']).api_ready, status: 200
   end
+
+  def search
+    render json: Character.search(params['search']), status: 200
+  end
 end

@@ -32,6 +32,10 @@
     <td> Mother:</td>
     <td><a ng-href="#/characters/{{object.mother.id}}">{{object.mother.composite_name}}</a></td>
   </tr>
+  <tr ng-repeat="sib in object.siblings">
+    <td>Sibling:</td>
+    <td><a ng-href="#/characters/{{sib.id}}">{{sib.composite_name}}</a></td>
+  </tr>
   <tr ng-repeat="child in object.children">
     <td>Child:</td>
     <td><a ng-href="#/characters/{{child.id}}">{{child.composite_name}}</a></td>

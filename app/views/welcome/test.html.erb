@@ -1,0 +1,887 @@
+<style>
+
+  .fam-tree-grid{
+    width: 1250px;
+    height: 1250px;
+    background-color: orange;
+
+    /*remove odd spaces*/
+    font-size: 0;
+  }
+
+  .fam-tree-grid .person-row{
+    background-color: green;
+    width: 100%;
+    height: 1.5%;
+  }
+
+  .fam-tree-grid .person-row .person-square{
+    background-color: #aaa;
+    vertical-align: top;
+    display: inline-block;
+    width: 13%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .fam-tree-grid .person-row .person-square p{
+    margin-top: 0;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .fam-tree-grid .person-row .relation-column{
+    background-color: #888;
+    display: inline-block;
+    vertical-align: top;
+    width: 1.5%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+
+  .fam-tree-grid .relation-row{
+    background-color: purple;
+    width: 100%;
+    height: 1.5%;
+  }
+
+  .fam-tree-grid .relation-row .person-square{
+    background-color: #888;
+    vertical-align: top;
+    display: inline-block;
+    width: 13%;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+  }
+
+  .fam-tree-grid .relation-row .relation-column{
+    background-color: #aaa;
+    display: inline-block;
+    vertical-align: top;
+    width: 1.5%;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+  }
+
+  .child-skip .top-inner-cross{
+    height: 50%;
+    border-bottom: 1px solid black;
+  }
+
+  .child-from-right .top-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-from-right .bottom-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-from-right .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+
+  }
+
+  .child-from-right .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-bottom: 1px solid black;
+  }
+
+  .child-from-right .bottom-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-right: 1px solid black;
+
+  }
+
+  .child-from-right .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+
+
+  .child-through .top-inner-cross {
+    width: 100%;
+    height: 50%;
+    border-bottom: 1px solid black;
+  }
+
+  .child-through .bottom-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-through .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+
+  }
+
+  .child-through .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-through .bottom-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-right: 1px solid black;
+
+  }
+
+  .child-through .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+
+  .child-from-left .top-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-from-left .bottom-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-from-left .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-bottom: 1px solid black;
+  }
+
+  .child-from-left .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-from-left .bottom-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-right: 1px solid black;
+  }
+
+  .child-from-left .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+
+
+  .child-through-from-up .top-inner-cross {
+    width: 100%;
+    height: 50%;
+    border-bottom: 1px solid black;
+  }
+
+  .child-through-from-up .bottom-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-through-from-up .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-through-from-up .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-through-from-up .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-right: 1px solid black;
+  }
+
+  .child-through-from-up .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+
+  .child-through-from-down .top-inner-cross {
+    width: 100%;
+    height: 50%;
+    border-bottom: 1px solid black;
+  }
+
+  .child-through-from-down .bottom-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-through-from-down .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-through-from-down .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-through-from-down .bottom-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-right: 1px solid black;
+  }
+
+  .child-through-from-down .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+
+  .child-from-left-to-up .top-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-from-left-to-up .bottom-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .child-from-left-to-up .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-from-left-to-up .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .child-from-left-to-up .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .child-from-left-to-up .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+
+
+  /*.top-inner-cross{
+    height: 50%;
+    border: 1px solid black;
+  }
+
+  .inner-cross .inner-side{
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+  }*/
+</style>
+<div class="fam-tree-grid">
+  <div class="person-row">
+    <div class="person-square">
+
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Grandfather</p>
+    </div>
+    <div class="relation-column child-through-from-down">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square">
+      <p>Grandmother</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+
+    </div>
+  </div>
+  <div class="relation-row">
+    <div class="person-square child-from-right">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-through">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-through-from-up">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-through">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-from-left">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+
+    </div>
+  </div>
+  <div class="person-row">
+    <div class="person-square">
+      <p>Uncle</p>
+    </div>
+    <div class="relation-column child-through-from-down">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square">
+      <p>Married Aunt</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Married Uncle</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Aunt</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Aunt</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Father</p>
+    </div>
+    <div class="relation-column child-through-from-down">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square">
+      <p>Mother</p>
+    </div>
+  </div>
+  <div class="relation-row">
+    <div class="person-square child-from-right">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-from-left-to-up">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square">
+
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-from-right">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-through-from-up">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-from-left">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+  </div>
+  <div class="person-row">
+    <div class="person-square">
+      <p>Cousin</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Self</p>
+    </div>
+    <div class="relation-column child-through-from-down">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square">
+      <p>Wife</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Brother-in-law</p>
+    </div>
+    <div class="relation-column child-through-from-down">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square">
+      <p>Sister</p>
+    </div>
+  </div>
+  <div class="relation-row">
+    <div class="person-square">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-from-right">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-skip">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-through-from-up">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-from-left">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-from-right">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="relation-column child-through-from-up">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+    <div class="person-square child-from-left">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+  </div>
+  <div class="person-row">
+    <div class="person-square">
+
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Son</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Daughter-in-law</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Son-in-law</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Daughter</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Nephew</p>
+    </div>
+    <div class="relation-column">
+
+    </div>
+    <div class="person-square">
+      <p>Niece</p>
+    </div>
+  </div>
+</div>
+
+
