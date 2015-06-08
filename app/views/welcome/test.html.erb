@@ -1,3 +1,165 @@
+<script>
+  var famTree= [
+  {
+    name: "Grandfather",
+    gender: "m",
+    spouse: {
+      name: "Grandmother",
+      gender: "f",
+      spouse: "already listed"
+    },
+    children: [
+      {
+        name: "uncle",
+        gender: "m",
+        spouse: {
+          name: "Married Aunt",
+          gender: "f",
+          spouse: "already listed"
+        },
+        children: [
+          {
+            name: 'cousin',
+            gender: "f"
+          }
+        ]
+      },
+      {
+        name: "Aunt",
+        gender: "f",
+        spouse: {
+          name: "Married Uncle",
+          gender: "m",
+          spouse: "already listed"
+        }
+      },
+      {
+        name: "Aunt",
+        gender: "f"
+      },
+      {
+        name: "father",
+        gender: "m",
+        spouse: {
+          name: "Mother",
+          gender: "f",
+          spouse: "already listed"
+        },
+        children: [
+          {
+            name: "self",
+            gender: "m",
+            spouse: {
+              name: "Wife",
+              gender: "f",
+              spouse: "already listed"
+            },
+            children: [
+              {
+                name: 'son',
+                gender: "m",
+                spouse: {
+                  name: "daughter-in-law",
+                  gender: "f",
+                  spouse: "already listed"
+                }
+              },
+              {
+                name: 'daughter',
+                gender: "f",
+                spouse: {
+                  name: "son-in-law",
+                  gender: "m",
+                  spouse: "already listed"
+                }
+              }
+            ]
+          },
+          {
+            name: 'sister',
+            gender: "f",
+            spouse: {
+              name: "brother-in-law",
+              gender: "m",
+              spouse: "already listed"
+            },
+            children: [
+              {
+                name: "nephew",
+                gender: "m",
+              },
+              {
+                name: "niece",
+                gender: "m",
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+
+
+var FamilyTree = function(jsonObject){
+
+  this.parseGenerations = function(jsonObject){
+    var store = [];
+
+    var generations = 1
+
+    while (generations < 5) {
+      var current;
+
+      if(store[generations - 2]){
+        current = store[generations - 2]
+        store[generations - 1] = []
+
+        for (var i = 0, ii = current.length; i < ii; i ++) {
+          if (current[i].children){
+            var childs = current[i].children
+            for (var y = 0, yy = childs.length; y < yy; y ++) {
+              childs[y].geneId = current[i].geneId + '|' + y
+            }
+            store[generations - 1] = store[generations - 1].concat(childs);
+          }
+        }
+      }
+      else{
+        store[0] = jsonObject
+        for (var z = 0, zz = store[0].length; z < zz; z++) {
+          store[0][z].geneId = '0|' + z
+        };
+      }
+      generations ++
+    }
+
+    return store;
+  }
+  this.rows = this.parseGenerations(jsonObject);
+}
+
+var FamilyTreeRows = function(opts){
+  this.rows = [];
+}
+
+x  = new FamilyTree(famTree)
+console.log(x.rows)
+
+// var FamilyTree.prototype.writeToDom = function(){
+//   var filler = Document.getElementById("fill-me");
+// }
+
+</script>
+
+
+
+
+
+
+
+
+
 <style>
 
   .fam-tree-grid{
@@ -70,36 +232,36 @@
     margin: 0;
   }
 
-  .child-skip .top-inner-cross{
+  .bisected .top-inner-cross{
     height: 50%;
     border-bottom: 1px solid black;
   }
 
-  .child-from-right .top-inner-cross {
+  .bottom-right .top-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-from-right .bottom-inner-cross {
+  .bottom-right .bottom-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-from-right .top-inner-cross .left-side{
+  .bottom-right .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
 
   }
 
-  .child-from-right .top-inner-cross .right-side{
+  .bottom-right .top-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
     border-bottom: 1px solid black;
   }
 
-  .child-from-right .bottom-inner-cross .left-side{
+  .bottom-right .bottom-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
@@ -107,84 +269,44 @@
 
   }
 
-  .child-from-right .bottom-inner-cross .right-side{
+  .bottom-right .bottom-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
 
-
-  .child-through .top-inner-cross {
-    width: 100%;
-    height: 50%;
-    border-bottom: 1px solid black;
-  }
-
-  .child-through .bottom-inner-cross {
+  .bottom-left .top-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-through .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-
-  }
-
-  .child-through .top-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .child-through .bottom-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-    border-right: 1px solid black;
-
-  }
-
-  .child-through .bottom-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-
-  .child-from-left .top-inner-cross {
+  .bottom-left .bottom-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-from-left .bottom-inner-cross {
-    width: 100%;
-    height: 50%;
-  }
-
-  .child-from-left .top-inner-cross .left-side{
+  .bottom-left .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
     border-bottom: 1px solid black;
   }
 
-  .child-from-left .top-inner-cross .right-side{
+  .bottom-left .top-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .child-from-left .bottom-inner-cross .left-side{
+  .bottom-left .bottom-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
     border-right: 1px solid black;
   }
 
-  .child-from-left .bottom-inner-cross .right-side{
+  .bottom-left .bottom-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
@@ -192,103 +314,103 @@
 
 
 
-  .child-through-from-up .top-inner-cross {
+  .top-right-top-left .top-inner-cross {
     width: 100%;
     height: 50%;
     border-bottom: 1px solid black;
   }
 
-  .child-through-from-up .bottom-inner-cross {
+  .top-right-top-left .bottom-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-through-from-up .top-inner-cross .left-side{
+  .top-right-top-left .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .child-through-from-up .top-inner-cross .right-side{
+  .top-right-top-left .top-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .child-through-from-up .top-inner-cross .left-side{
+  .top-right-top-left .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
     border-right: 1px solid black;
   }
 
-  .child-through-from-up .bottom-inner-cross .right-side{
+  .top-right-top-left .bottom-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
 
-  .child-through-from-down .top-inner-cross {
+  .bottom-right-bottom-left .top-inner-cross {
     width: 100%;
     height: 50%;
     border-bottom: 1px solid black;
   }
 
-  .child-through-from-down .bottom-inner-cross {
+  .bottom-right-bottom-left .bottom-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-through-from-down .top-inner-cross .left-side{
+  .bottom-right-bottom-left .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .child-through-from-down .top-inner-cross .right-side{
+  .bottom-right-bottom-left .top-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .child-through-from-down .bottom-inner-cross .left-side{
+  .bottom-right-bottom-left .bottom-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
     border-right: 1px solid black;
   }
 
-  .child-through-from-down .bottom-inner-cross .right-side{
+  .bottom-right-bottom-left .bottom-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
 
-  .child-from-left-to-up .top-inner-cross {
+  .bottom-left-to-up .top-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-from-left-to-up .bottom-inner-cross {
+  .bottom-left-to-up .bottom-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .child-from-left-to-up .top-inner-cross .left-side{
+  .bottom-left-to-up .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .child-from-left-to-up .top-inner-cross .right-side{
+  .bottom-left-to-up .top-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .child-from-left-to-up .top-inner-cross .left-side{
+  .bottom-left-to-up .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
@@ -296,24 +418,13 @@
     border-bottom: 1px solid black;
   }
 
-  .child-from-left-to-up .bottom-inner-cross .right-side{
+  .bottom-left-to-up .bottom-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
 
-
-  /*.top-inner-cross{
-    height: 50%;
-    border: 1px solid black;
-  }
-
-  .inner-cross .inner-side{
-    width: 50%;
-    height: 100%;
-    border: 1px solid black;
-  }*/
 </style>
 <div class="fam-tree-grid">
   <div class="person-row">
@@ -337,7 +448,7 @@
     <div class="person-square">
       <p>Grandfather</p>
     </div>
-    <div class="relation-column child-through-from-down">
+    <div class="relation-column bottom-right-bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -364,7 +475,7 @@
     </div>
   </div>
   <div class="relation-row">
-    <div class="person-square child-from-right">
+    <div class="person-square bottom-right">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -374,7 +485,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -384,7 +495,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-skip">
+    <div class="person-square bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -394,7 +505,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -404,7 +515,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-skip">
+    <div class="person-square bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -414,7 +525,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -424,7 +535,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-through">
+    <div class="person-square bottom-right-bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -434,7 +545,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-through-from-up">
+    <div class="relation-column top-right-top-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -444,7 +555,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-through">
+    <div class="person-square bottom-right-bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -454,7 +565,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -464,7 +575,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-from-left">
+    <div class="person-square bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -485,7 +596,7 @@
     <div class="person-square">
       <p>Uncle</p>
     </div>
-    <div class="relation-column child-through-from-down">
+    <div class="relation-column bottom-right-bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -522,7 +633,7 @@
     <div class="person-square">
       <p>Father</p>
     </div>
-    <div class="relation-column child-through-from-down">
+    <div class="relation-column bottom-right-bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -537,7 +648,7 @@
     </div>
   </div>
   <div class="relation-row">
-    <div class="person-square child-from-right">
+    <div class="person-square bottom-right">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -547,7 +658,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-from-left-to-up">
+    <div class="relation-column bottom-left-to-up">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -583,7 +694,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-from-right">
+    <div class="person-square bottom-right">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -593,7 +704,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -603,7 +714,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-skip">
+    <div class="person-square bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -613,7 +724,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -623,7 +734,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-skip">
+    <div class="person-square bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -633,7 +744,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-through-from-up">
+    <div class="relation-column top-right-top-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -643,7 +754,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-from-left">
+    <div class="person-square bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -676,7 +787,7 @@
     <div class="person-square">
       <p>Self</p>
     </div>
-    <div class="relation-column child-through-from-down">
+    <div class="relation-column bottom-right-bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -695,7 +806,7 @@
     <div class="person-square">
       <p>Brother-in-law</p>
     </div>
-    <div class="relation-column child-through-from-down">
+    <div class="relation-column bottom-right-bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -730,7 +841,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-from-right">
+    <div class="person-square bottom-right">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -740,7 +851,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -750,7 +861,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-skip">
+    <div class="person-square bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -760,7 +871,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-skip">
+    <div class="relation-column bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -770,7 +881,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-skip">
+    <div class="person-square bisected">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -780,7 +891,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-through-from-up">
+    <div class="relation-column top-right-top-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -790,7 +901,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-from-left">
+    <div class="person-square bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -810,7 +921,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-from-right">
+    <div class="person-square bottom-right">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -820,7 +931,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column child-through-from-up">
+    <div class="relation-column top-right-top-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -830,7 +941,7 @@
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="person-square child-from-left">
+    <div class="person-square bottom-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -843,28 +954,63 @@
   </div>
   <div class="person-row">
     <div class="person-square">
-
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
     </div>
     <div class="relation-column">
-
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
     </div>
     <div class="person-square">
       <p>Son</p>
     </div>
-    <div class="relation-column">
-
+    <div class="relation-column bisected">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
     </div>
     <div class="person-square">
       <p>Daughter-in-law</p>
     </div>
     <div class="relation-column">
-
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
     </div>
     <div class="person-square">
       <p>Son-in-law</p>
     </div>
-    <div class="relation-column">
-
+    <div class="relation-column  bisected">
+      <div class="top-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
+      <div class="bottom-inner-cross">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+      </div>
     </div>
     <div class="person-square">
       <p>Daughter</p>
@@ -885,3 +1031,6 @@
 </div>
 
 
+<div class="fam-tree-grid" id="fill-me">
+
+<div>
