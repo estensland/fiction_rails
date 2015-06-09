@@ -119,7 +119,8 @@ var FamilyTree = function(jsonObject){
           if (current[i].children){
             var childs = current[i].children
             for (var y = 0, yy = childs.length; y < yy; y ++) {
-              childs[y].geneId = current[i].geneId + '|' + y
+              childs[y].parentNode = current[i].geneId;
+              childs[y].geneId = current[i].geneId + '|' + y;
             }
             store[generations - 1] = store[generations - 1].concat(childs);
           }
@@ -136,15 +137,127 @@ var FamilyTree = function(jsonObject){
 
     return store;
   }
-  this.rows = this.parseGenerations(jsonObject);
+
+  this.addSpouses = function(rows){
+    var result = []
+    for (var i = 0, ii = rows.length; i < ii; i++) {
+      result[i] = []
+      for (var y = 0, yy = rows[i].length; y < yy; y++) {
+        subj = rows[i][y]
+
+        if (subj.spouse && subj.spouse != 'already listed'){
+          subj.spouse.marriedGeneId = subj.geneId
+
+          if (subj.parentNode){
+            subj.spouse.parentNode = subj.parentNode
+          }
+          if (subj.gender == 'm'){
+            result[i].push(subj);
+            result[i].push(subj.spouse);
+          }
+          else{
+            result[i].push(subj.spouse);
+            result[i].push(subj);
+          }
+        }
+        else{
+          result[i].push(subj);
+        }
+      };
+    };
+    return result
+  }
+
+  this.findLongestRow = function(rows){
+    var longestLength = 0
+
+    for (var i = 0, ii = rows.length; i < ii; i++) {
+      if (rows[i].length > longestLength){
+        longestLength = rows[i].length;
+      }
+    };
+
+    return longestLength
+  }
+
+  this.spaceRows = function(longest, rows){
+    var result = rows
+
+    var rowCount = [];
+    for (var i = rows.length - 1; i >-1; i--) {
+
+      rowCount[i] = {couples: [], standAlones: [], families: {}}
+
+      for (var x = 0, xx = rows[i].length; x < xx; x++) {
+        var subject = rows[i][x];
+        subject.spouse ? rowCount[i].couples.push(subject) : rowCount[i].standAlones.push(subject)
+        if (!rowCount[i].families[subject.parentNode]){
+          rowCount[i].families[subject.parentNode] = {startIndex: x, members: []}
+        }
+        rowCount[i].families[subject.parentNode].members.push(subject)
+      };
+
+      var famKeys = Object.keys(rowCount[i].families);
+
+      if (famKeys.length == 1 && result[i].length < longest){
+        var beginning = true
+        while (result[i].length < longest) {
+          var atIndex;
+
+          if(beginning){
+            atIndex = 0
+            rowCount[i].families[famKeys[0]].startIndex ++;
+          }
+          else{
+            atIndex = result[i].length
+          }
+
+          result[i].splice(atIndex, 0, {gap: true})
+          beginning = !beginning
+        }
+      }
+      else if (result[i].length < longest){
+        var count =  0
+
+        while (result[i].length < longest) {
+          var family = rowCount[i].families[famKeys[count]];
+
+          var range = family.startIndex + family.members.length;
+          result[i].splice(range, 0, {gap: true})
+
+          for (var z = 0, zz = famKeys.length; z < zz; z ++) {
+            fam = rowCount[i].families[famKeys[z]];
+            if (fam.startIndex >= range){
+              fam.startIndex ++;
+            }
+          };
+
+          if (famKeys.length - 1 < count){
+            count ++;
+          }
+          else{
+            count = 0;
+          }
+        }
+      }
+    };
+
+    return {rows: result, rowCounts: rowCount}
+  }
+
+  this.generationRows = this.parseGenerations(jsonObject);
+  this.generationRowsWithSpouses = this.addSpouses(this.generationRows);
+  this.longestRow = this.findLongestRow(this.generationRowsWithSpouses)
+  this.spacedRows = this.spaceRows(this.longestRow, this.generationRowsWithSpouses);
+
 }
 
-var FamilyTreeRows = function(opts){
-  this.rows = [];
-}
+
 
 x  = new FamilyTree(famTree)
-console.log(x.rows)
+
+console.log(x.spacedRows)
+console.log(x.spacedRows.rows)
 
 // var FamilyTree.prototype.writeToDom = function(){
 //   var filler = Document.getElementById("fill-me");
