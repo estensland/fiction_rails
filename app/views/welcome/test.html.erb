@@ -260,7 +260,7 @@ console.log(x.spacedRows)
 console.log(x.spacedRows.rows)
 
 // var FamilyTree.prototype.writeToDom = function(){
-//   var filler = Document.getElementById("fill-me");
+
 // }
 
 </script>
@@ -1147,3 +1147,34 @@ console.log(x.spacedRows.rows)
 <div class="fam-tree-grid" id="fill-me">
 
 <div>
+
+
+
+
+
+<script>
+console.log('asdasd')
+  var filler = document.getElementById("fill-me");
+  var row = document.createElement("Div")
+  row.className = 'person-row'
+
+  for (var i = 0, ii = x.spacedRows.rows[0].length; i < ii; i++) {
+    var cell = document.createElement("Div")
+    var ptag = document.createElement("P")
+    cell.className = 'person-square'
+
+    if (x.spacedRows.rows[0][i].name){
+      ptag.innerHTML  = x.spacedRows.rows[0][i].name
+    }
+
+    row.appendChild(cell)
+    cell.appendChild(ptag)
+    if (i != ii - 1) {
+      var relationCell = document.createElement("Div")
+      relationCell.className = 'relation-column'
+      row.appendChild(relationCell)
+    }
+  };
+
+  filler.appendChild(row)
+</script>
