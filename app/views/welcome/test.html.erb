@@ -211,7 +211,6 @@ var FamilyTree = function(jsonObject){
           else{
             atIndex = result[i].length
           }
-
           result[i].splice(atIndex, 0, {gap: true})
           beginning = !beginning
         }
@@ -242,6 +241,37 @@ var FamilyTree = function(jsonObject){
       }
     };
 
+    var readyAndChecked = false
+
+    while (!readyAndChecked){
+      readyAndChecked = true
+      for (var q = 0, qq = result.length; q < qq; q++) {
+        var current = result[q]
+        var nextRow = result[q + 1]
+        var nextRowCount = rowCount[q + 1]
+
+        if (nextRow){
+          for (var w = 0, ww = result[q].length; w < ww; w++) {
+            if(result[q][w].geneId && nextRowCount.families[result[q][w].geneId]){
+              var famRecord = nextRowCount.families[result[q][w].geneId]
+
+              var adjuster = 0
+
+              if (result[q][w].gender == 'f'){
+                adjuster ++;
+              }
+
+              var range = {start: (famRecord.startIndex - adjuster), end: (famRecord.startIndex + famRecord.members.length - 1 - adjuster)}
+
+              if (range.start > w || range.stop < w ){
+                console.log('ahhhh')
+              }
+            }
+          };
+        }
+      }
+    }
+
     return {rows: result, rowCounts: rowCount}
   }
 
@@ -256,8 +286,8 @@ var FamilyTree = function(jsonObject){
 
 x  = new FamilyTree(famTree)
 
-console.log(x.spacedRows)
-console.log(x.spacedRows.rows)
+// console.log(x.spacedRows)
+// console.log(x.spacedRows.rows)
 
 // var FamilyTree.prototype.writeToDom = function(){
 
@@ -1153,28 +1183,76 @@ console.log(x.spacedRows.rows)
 
 
 <script>
-console.log('asdasd')
+
   var filler = document.getElementById("fill-me");
-  var row = document.createElement("Div")
-  row.className = 'person-row'
 
-  for (var i = 0, ii = x.spacedRows.rows[0].length; i < ii; i++) {
-    var cell = document.createElement("Div")
-    var ptag = document.createElement("P")
-    cell.className = 'person-square'
+  for (var y = 0, yy = x.spacedRows.rows.length; y < yy; y++) {
+    var row = document.createElement("Div")
+    row.className = 'person-row'
 
-    if (x.spacedRows.rows[0][i].name){
-      ptag.innerHTML  = x.spacedRows.rows[0][i].name
-    }
+    for (var i = 0, ii = x.spacedRows.rows[y].length; i < ii; i++) {
+      var cell = document.createElement("Div")
+      var ptag = document.createElement("P")
+      cell.className = 'person-square'
 
-    row.appendChild(cell)
-    cell.appendChild(ptag)
-    if (i != ii - 1) {
-      var relationCell = document.createElement("Div")
-      relationCell.className = 'relation-column'
-      row.appendChild(relationCell)
-    }
+      if (x.spacedRows.rows[y][i].name){
+        ptag.innerHTML  = x.spacedRows.rows[y][i].name
+      }
+
+      row.appendChild(cell)
+      cell.appendChild(ptag)
+      if (i != ii - 1) {
+        var relationCell = document.createElement("Div")
+        relationCell.className = "relation-column"
+
+        var topper = document.createElement("Div")
+        topper.className = "top-inner-cross"
+        var bottom = document.createElement("Div")
+        bottom.className = "bottom-inner-cross"
+
+        rightSideTop = document.createElement("Div")
+        rightSideTop.className = "right-side"
+        rightSideBottom = document.createElement("Div")
+        rightSideTop.className = "right-side"
+
+        leftSideTop = document.createElement("Div")
+        leftSideTop.className = "left-side"
+        leftSideBottom = document.createElement("Div")
+        leftSideBottom.className = "left-side"
+
+        topper.appendChild(rightSideTop)
+        topper.appendChild(leftSideTop)
+
+        bottom.appendChild(rightSideBottom)
+        bottom.appendChild(leftSideBottom)
+
+        relationCell.appendChild(topper)
+        relationCell.appendChild(bottom)
+
+        var classedName = 'relation-column'
+
+
+        if (x.spacedRows.rows[y][i].spouse && x.spacedRows.rows[y][i].gender == 'm'){
+          if (x.spacedRows.rows[y][i].children && x.spacedRows.rows[y][i].children.length > 0 ){
+            classedName = classedName + ' bottom-right-bottom-left'
+          }
+          else{
+            classedName = classedName + ' bisected'
+          }
+        }
+
+        relationCell.className = classedName
+
+        row.appendChild(relationCell)
+      }
+    };
+
+    filler.appendChild(row)
+
+    var relationRow = document.createElement("Div")
+    relationRow.className = 'relation-row'
+
+    relationRow.innerHTML = "<div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div>"
+    filler.appendChild(relationRow)
   };
-
-  filler.appendChild(row)
 </script>
