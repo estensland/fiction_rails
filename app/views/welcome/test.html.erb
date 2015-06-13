@@ -19,7 +19,7 @@
         },
         children: [
           {
-            name: 'cousin',
+            name: 'Cousin',
             gender: "f"
           }
         ]
@@ -38,7 +38,7 @@
         gender: "f"
       },
       {
-        name: "father",
+        name: "Father",
         gender: "m",
         spouse: {
           name: "Mother",
@@ -47,7 +47,7 @@
         },
         children: [
           {
-            name: "self",
+            name: "Self",
             gender: "m",
             spouse: {
               name: "Wife",
@@ -56,19 +56,19 @@
             },
             children: [
               {
-                name: 'son',
+                name: 'Son',
                 gender: "m",
                 spouse: {
-                  name: "daughter-in-law",
+                  name: "Daughter-in-law",
                   gender: "f",
                   spouse: "already listed"
                 }
               },
               {
-                name: 'daughter',
+                name: 'Daughter',
                 gender: "f",
                 spouse: {
-                  name: "son-in-law",
+                  name: "Son-in-law",
                   gender: "m",
                   spouse: "already listed"
                 }
@@ -76,20 +76,141 @@
             ]
           },
           {
-            name: 'sister',
+            name: 'Sister',
             gender: "f",
             spouse: {
-              name: "brother-in-law",
+              name: "Brother-in-law",
               gender: "m",
               spouse: "already listed"
             },
             children: [
               {
-                name: "nephew",
+                name: "Nephew",
                 gender: "m",
               },
               {
-                name: "niece",
+                name: "Niece",
+                gender: "m",
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+
+ var famTree2= [
+  {
+    name: "Grandfather",
+    gender: "m",
+    spouse: {
+      name: "Grandmother",
+      gender: "f",
+      spouse: "already listed"
+    },
+    children: [
+      {
+        name: "Aunt",
+        gender: "f",
+        spouse: {
+          name: "Married Uncle",
+          gender: "m",
+          spouse: "already listed"
+        },
+        children: [
+          {
+            name: 'Cousin',
+            gender: "f",
+            spouse: {
+              name: "Married to Cousin",
+              gender: "m",
+              spouse: "already listed"
+            }
+          }
+        ]
+      },
+      {
+        name: "Uncle",
+        gender: "m",
+        spouse: {
+          name: "Married Aunt",
+          gender: "f",
+          spouse: "already listed"
+        },
+        children: [
+          {
+            name: 'Cousin',
+            gender: "f"
+          }
+        ]
+      },
+      {
+        name: "Aunt",
+        gender: "f",
+        spouse: {
+          name: "Married Uncle",
+          gender: "m",
+          spouse: "already listed"
+        }
+      },
+      {
+        name: "Aunt",
+        gender: "f"
+      },
+      {
+        name: "Father",
+        gender: "m",
+        spouse: {
+          name: "Mother",
+          gender: "f",
+          spouse: "already listed"
+        },
+        children: [
+          {
+            name: "Self",
+            gender: "m",
+            spouse: {
+              name: "Wife",
+              gender: "f",
+              spouse: "already listed"
+            },
+            children: [
+              {
+                name: 'Son',
+                gender: "m",
+                spouse: {
+                  name: "Daughter-in-law",
+                  gender: "f",
+                  spouse: "already listed"
+                }
+              },
+              {
+                name: 'Daughter',
+                gender: "f",
+                spouse: {
+                  name: "Son-in-law",
+                  gender: "m",
+                  spouse: "already listed"
+                }
+              }
+            ]
+          },
+          {
+            name: 'Sister',
+            gender: "f",
+            spouse: {
+              name: "Brother-in-law",
+              gender: "m",
+              spouse: "already listed"
+            },
+            children: [
+              {
+                name: "Nephew",
+                gender: "m",
+              },
+              {
+                name: "Niece",
                 gender: "m",
               }
             ]
@@ -261,10 +382,16 @@ var FamilyTree = function(jsonObject){
                 adjuster ++;
               }
 
-              var range = {start: (famRecord.startIndex - adjuster), end: (famRecord.startIndex + famRecord.members.length - 1 - adjuster)}
+              var range = {start: (famRecord.startIndex - adjuster), end: (famRecord.startIndex + famRecord.members.length - adjuster)}
 
-              if (range.start > w || range.stop < w ){
-                console.log('ahhhh')
+              if (range.start > w){
+                console.log(result[q][w].name)
+                console.log(w)
+                console.log(range)
+                console.log(famRecord)
+              }
+              else if (range.end < w){
+                // console.log(famRecord)
               }
             }
           };
@@ -284,7 +411,7 @@ var FamilyTree = function(jsonObject){
 
 
 
-x  = new FamilyTree(famTree)
+x = new FamilyTree(famTree)
 
 // console.log(x.spacedRows)
 // console.log(x.spacedRows.rows)
@@ -292,6 +419,8 @@ x  = new FamilyTree(famTree)
 // var FamilyTree.prototype.writeToDom = function(){
 
 // }
+
+famtree2  = new FamilyTree(famTree2)
 
 </script>
 
@@ -306,8 +435,8 @@ x  = new FamilyTree(famTree)
 <style>
 
   .fam-tree-grid{
-    width: 1250px;
-    height: 1250px;
+    width: 1850px;
+    height: 1850px;
     background-color: orange;
 
     /*remove odd spaces*/
@@ -317,14 +446,14 @@ x  = new FamilyTree(famTree)
   .fam-tree-grid .person-row{
     background-color: green;
     width: 100%;
-    height: 1.5%;
+    height: 1%;
   }
 
   .fam-tree-grid .person-row .person-square{
     background-color: #aaa;
     vertical-align: top;
     display: inline-block;
-    width: 13%;
+    width: 8.5%;
     height: 100%;
     padding: 0;
     margin: 0;
@@ -350,14 +479,14 @@ x  = new FamilyTree(famTree)
   .fam-tree-grid .relation-row{
     background-color: purple;
     width: 100%;
-    height: 1.5%;
+    height: 1%;
   }
 
   .fam-tree-grid .relation-row .person-square{
     background-color: #888;
     vertical-align: top;
     display: inline-block;
-    width: 13%;
+    width: 8.5%;
     height: 100%;
 
     padding: 0;
@@ -531,29 +660,29 @@ x  = new FamilyTree(famTree)
   }
 
 
-  .bottom-left-to-up .top-inner-cross {
+  .top-left .top-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .bottom-left-to-up .bottom-inner-cross {
+  .top-left .bottom-inner-cross {
     width: 100%;
     height: 50%;
   }
 
-  .bottom-left-to-up .top-inner-cross .left-side{
+  .top-left .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .bottom-left-to-up .top-inner-cross .right-side{
+  .top-left .top-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .bottom-left-to-up .top-inner-cross .left-side{
+  .top-left .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
@@ -561,7 +690,43 @@ x  = new FamilyTree(famTree)
     border-bottom: 1px solid black;
   }
 
-  .bottom-left-to-up .bottom-inner-cross .right-side{
+  .top-right .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .top-right .top-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .top-right .bottom-inner-cross {
+    width: 100%;
+    height: 50%;
+  }
+
+  .top-right .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .top-right .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .top-right .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .top-right .bottom-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
@@ -801,7 +966,7 @@ x  = new FamilyTree(famTree)
         <div class="right-side"></div>
       </div>
     </div>
-    <div class="relation-column bottom-left-to-up">
+    <div class="relation-column top-left">
       <div class="top-inner-cross">
         <div class="left-side"></div>
         <div class="right-side"></div>
@@ -1179,28 +1344,123 @@ x  = new FamilyTree(famTree)
 <div>
 
 
+<div class="fam-tree-grid" id="fill-me2">
+
+<div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>END</p>
 
 
 
 <script>
 
-  var filler = document.getElementById("fill-me");
-
-  for (var y = 0, yy = x.spacedRows.rows.length; y < yy; y++) {
+var treeGenerator = function(famedTree, filler){
+  for (var y = 0, yy = famedTree.spacedRows.rows.length; y < yy; y++) {
     var row = document.createElement("Div")
     row.className = 'person-row'
 
-    for (var i = 0, ii = x.spacedRows.rows[y].length; i < ii; i++) {
+    var relationRow = document.createElement("Div")
+    relationRow.className = 'relation-row'
+
+    for (var i = 0, ii = famedTree.spacedRows.rows[y].length; i < ii; i++) {
       var cell = document.createElement("Div")
       var ptag = document.createElement("P")
       cell.className = 'person-square'
 
-      if (x.spacedRows.rows[y][i].name){
-        ptag.innerHTML  = x.spacedRows.rows[y][i].name
+
+      if (famedTree.spacedRows.rows[y][i].name){
+        ptag.innerHTML  = famedTree.spacedRows.rows[y][i].name
       }
 
       row.appendChild(cell)
       cell.appendChild(ptag)
+
+      var relRowstatus = ''
+      if (famedTree.spacedRows.rows[y + 1]){
+
+        var nextRowCorrespondingPerson = famedTree.spacedRows.rows[y + 1][i]
+        var prevInLine = famedTree.spacedRows.rows[y + 1][i - 1]
+        var nextInLine = famedTree.spacedRows.rows[y + 1][i + 1]
+
+        if(nextRowCorrespondingPerson && nextRowCorrespondingPerson.parentNode){
+          if(nextRowCorrespondingPerson.geneId){
+
+            var famData = famedTree.spacedRows.rowCounts[y + 1].families[nextRowCorrespondingPerson.parentNode]
+
+            if (famData.startIndex > i - 1) {
+              relRowstatus = "bottom-right"
+            }
+            else if(nextRowCorrespondingPerson.gender =='f' && nextRowCorrespondingPerson.spouse && famData.startIndex > i - 2){
+              relRowstatus = "bottom-right"
+            }
+            else if(famData.startIndex + famData.members.length < i + 1){
+              relRowstatus = "bottom-left"
+            }
+            else if(!nextInLine || (nextInLine && nextInLine.parentNode == nextRowCorrespondingPerson.parentNode && nextInLine.marriedGeneId && famData.startIndex + famData.members.length < i + 3)){
+              relRowstatus = "bottom-left"
+            }
+            else{
+              relRowstatus = "bottom-right-bottom-left"
+            }
+          }
+          else if (nextRowCorrespondingPerson.marriedGeneId){
+            if (prevInLine && prevInLine.parentNode == nextRowCorrespondingPerson.parentNode){
+              if (nextInLine && nextInLine.parentNode == nextRowCorrespondingPerson.parentNode){
+                relRowstatus = "bisected"
+              }
+            }
+          }
+        }
+      }
+
+
+      var relRowCell = document.createElement("Div")
+      relRowCell.className = 'person-square'
+
+      if(relRowstatus){
+        relRowCell.className = relRowCell.className + ' ' + relRowstatus
+      }
+
+      var relRowTopper = document.createElement("Div")
+      relRowTopper.className = "top-inner-cross"
+      var relRowBottom = document.createElement("Div")
+      relRowBottom.className = "bottom-inner-cross"
+
+      relRowRightSideTop = document.createElement("Div")
+      relRowRightSideTop.className = "right-side"
+      relRowRightSideBottom = document.createElement("Div")
+      relRowRightSideBottom.className = "right-side"
+
+      relRowLeftSideTop = document.createElement("Div")
+      relRowLeftSideTop.className = "left-side"
+      relRowLeftSideBottom = document.createElement("Div")
+      relRowLeftSideBottom.className = "left-side"
+
+      relRowTopper.appendChild(relRowLeftSideTop)
+      relRowTopper.appendChild(relRowRightSideTop)
+
+      relRowBottom.appendChild(relRowLeftSideBottom)
+      relRowBottom.appendChild(relRowRightSideBottom)
+
+      relRowCell.appendChild(relRowTopper)
+      relRowCell.appendChild(relRowBottom)
+
+      relationRow.appendChild(relRowCell)
+
+
       if (i != ii - 1) {
         var relationCell = document.createElement("Div")
         relationCell.className = "relation-column"
@@ -1213,18 +1473,18 @@ x  = new FamilyTree(famTree)
         rightSideTop = document.createElement("Div")
         rightSideTop.className = "right-side"
         rightSideBottom = document.createElement("Div")
-        rightSideTop.className = "right-side"
+        rightSideBottom.className = "right-side"
 
         leftSideTop = document.createElement("Div")
         leftSideTop.className = "left-side"
         leftSideBottom = document.createElement("Div")
         leftSideBottom.className = "left-side"
 
-        topper.appendChild(rightSideTop)
         topper.appendChild(leftSideTop)
+        topper.appendChild(rightSideTop)
 
-        bottom.appendChild(rightSideBottom)
         bottom.appendChild(leftSideBottom)
+        bottom.appendChild(rightSideBottom)
 
         relationCell.appendChild(topper)
         relationCell.appendChild(bottom)
@@ -1232,8 +1492,11 @@ x  = new FamilyTree(famTree)
         var classedName = 'relation-column'
 
 
-        if (x.spacedRows.rows[y][i].spouse && x.spacedRows.rows[y][i].gender == 'm'){
-          if (x.spacedRows.rows[y][i].children && x.spacedRows.rows[y][i].children.length > 0 ){
+        if (famedTree.spacedRows.rows[y][i].spouse && famedTree.spacedRows.rows[y][i].gender == 'm'){
+          if (famedTree.spacedRows.rows[y][i].children && famedTree.spacedRows.rows[y][i].children.length > 0 ){
+            classedName = classedName + ' bottom-right-bottom-left'
+          }
+          else if (famedTree.spacedRows.rows[y][i].spouse == 'already listed' && famedTree.spacedRows.rows[y][i + 1].children && famedTree.spacedRows.rows[y][i + 1].children.length > 0 ){
             classedName = classedName + ' bottom-right-bottom-left'
           }
           else{
@@ -1244,15 +1507,79 @@ x  = new FamilyTree(famTree)
         relationCell.className = classedName
 
         row.appendChild(relationCell)
+
+
+        var relRelRowCell = document.createElement("Div")
+        relRelRowCell.className = 'relation-column'
+
+
+        if(relRowstatus){
+          if(relRowstatus == 'bisected' || relRowstatus == 'bottom-right' || relRowstatus == 'bottom-right-bottom-left'){
+            if(nextInLine.name){
+              if(nextInLine.geneId && nextInLine.parentNode == nextRowCorrespondingPerson.parentNode){
+                if(famedTree.spacedRows.rows[y][i].name && ((famedTree.spacedRows.rows[y][i].geneId === nextRowCorrespondingPerson.parentNode) || famedTree.spacedRows.rows[y][i + 1].geneId === nextRowCorrespondingPerson.parentNode)){
+                  relRelRowCell.className = relRelRowCell.className + " top-right-top-left"
+                }
+                else{
+                  relRelRowCell.className = relRelRowCell.className + " bisected"
+                }
+              }
+              else if(famedTree.spacedRows.rows[y + 1][i + 2] && famedTree.spacedRows.rows[y + 1][i + 2].geneId && famedTree.spacedRows.rows[y + 1][i + 2].parentNode == famedTree.spacedRows.rows[y + 1][i + 2].parentNode){
+                relRelRowCell.className = relRelRowCell.className + " bisected"
+              }
+              else if(famedTree.spacedRows.rows[y + 1][i + 3] && famedTree.spacedRows.rows[y + 1][i + 3].geneId && famedTree.spacedRows.rows[y + 1][i + 3].parentNode == famedTree.spacedRows.rows[y + 1][i + 3].parentNode){
+                relRelRowCell.className = relRelRowCell.className + " bisected"
+              }
+            }
+            else{
+              relRelRowCell.className = relRelRowCell.className + " top-left"
+            }
+          }
+        }
+
+        var relRelRowTopper = document.createElement("Div")
+        relRelRowTopper.className = "top-inner-cross"
+        var relRelRowBottom = document.createElement("Div")
+        relRelRowBottom.className = "bottom-inner-cross"
+
+        relRelRowRightSideTop = document.createElement("Div")
+        relRelRowRightSideTop.className = "right-side"
+        relRelRowRightSideBottom = document.createElement("Div")
+        relRelRowRightSideBottom.className = "right-side"
+
+        relRelRowLeftSideTop = document.createElement("Div")
+        relRelRowLeftSideTop.className = "left-side"
+        relRelRowLeftSideBottom = document.createElement("Div")
+        relRelRowLeftSideBottom.className = "left-side"
+
+        relRelRowTopper.appendChild(relRelRowLeftSideTop)
+        relRelRowTopper.appendChild(relRelRowRightSideTop)
+
+        relRelRowBottom.appendChild(relRelRowLeftSideBottom)
+        relRelRowBottom.appendChild(relRelRowRightSideBottom)
+
+        relRelRowCell.appendChild(relRelRowTopper)
+        relRelRowCell.appendChild(relRelRowBottom)
+
+        relationRow.appendChild(relRelRowCell)
       }
     };
 
     filler.appendChild(row)
 
-    var relationRow = document.createElement("Div")
-    relationRow.className = 'relation-row'
-
-    relationRow.innerHTML = "<div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square '> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='relation-column'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div> <div class='person-square'> <div class='top-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> <div class='bottom-inner-cross'> <div class='left-side'></div> <div class='right-side'></div> </div> </div>"
     filler.appendChild(relationRow)
   };
+}
+
+var filler = document.getElementById("fill-me");
+
+treeGenerator(x, filler)
+
+var filler = document.getElementById("fill-me2");
+
+treeGenerator(famtree2, filler)
+
+
+
+
 </script>
