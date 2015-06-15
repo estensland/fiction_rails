@@ -90,7 +90,7 @@
               },
               {
                 name: "Niece",
-                gender: "m",
+                gender: "f",
               }
             ]
           }
@@ -211,7 +211,7 @@
               },
               {
                 name: "Niece",
-                gender: "m",
+                gender: "f",
               }
             ]
           }
@@ -382,15 +382,18 @@ var FamilyTree = function(jsonObject){
                 adjuster ++;
               }
 
-              var range = {start: (famRecord.startIndex - adjuster), end: (famRecord.startIndex + famRecord.members.length - adjuster)}
+              var range = {start: (famRecord.startIndex - adjuster), end: (famRecord.startIndex + famRecord.members.length - 1)}
 
               if (range.start > w){
-                console.log(result[q][w].name)
-                console.log(w)
-                console.log(range)
-                console.log(famRecord)
+                // console.log(result[q][w].name)
+                // console.log(w)
+                // console.log(range.start - w )
+                // console.log(famRecord)
               }
               else if (range.end < w){
+                // console.log(result[q][w].name)
+                // console.log(w)
+                // console.log(range.end - w)
                 // console.log(famRecord)
               }
             }
@@ -690,11 +693,7 @@ famtree2  = new FamilyTree(famTree2)
     border-bottom: 1px solid black;
   }
 
-  .top-right .bottom-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
+
 
   .top-right .top-inner-cross {
     width: 100%;
@@ -706,30 +705,36 @@ famtree2  = new FamilyTree(famTree2)
     height: 50%;
   }
 
+  .top-right .top-inner-cross div{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .top-right .bottom-inner-cross div{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
   .top-right .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
   }
 
-  .top-right .top-inner-cross .right-side{
+  .top-right .top-inner-cross .left-side{
     width: 50%;
     display: inline-block;
     height: 100%;
-  }
-
-  .top-right .top-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
+    border-right: 1px solid black;
   }
 
   .top-right .bottom-inner-cross .right-side{
     width: 50%;
     display: inline-block;
     height: 100%;
+    border-top: 1px solid black;
   }
 
 
@@ -1399,12 +1404,16 @@ var treeGenerator = function(famedTree, filler){
           if(nextRowCorrespondingPerson.geneId){
 
             var famData = famedTree.spacedRows.rowCounts[y + 1].families[nextRowCorrespondingPerson.parentNode]
-
             if (famData.startIndex > i - 1) {
               relRowstatus = "bottom-right"
             }
-            else if(nextRowCorrespondingPerson.gender =='f' && nextRowCorrespondingPerson.spouse && famData.startIndex > i - 2){
-              relRowstatus = "bottom-right"
+            else if((nextRowCorrespondingPerson.gender =='f' && nextRowCorrespondingPerson.spouse && famData.startIndex > i - 2) || famData.startIndex + famData.members.length < i + 1) {
+              if(famedTree.spacedRows.rows[y][i].geneId == nextRowCorrespondingPerson.parentNode || famedTree.spacedRows.rows[y][i].marriedGeneId == nextRowCorrespondingPerson.parentNode){
+                relRowstatus = "bottom-left"
+              }
+              else{
+                relRowstatus = "bottom-right"
+              }
             }
             else if(famData.startIndex + famData.members.length < i + 1){
               relRowstatus = "bottom-left"
@@ -1504,6 +1513,7 @@ var treeGenerator = function(famedTree, filler){
           }
         }
 
+
         relationCell.className = classedName
 
         row.appendChild(relationCell)
@@ -1534,6 +1544,20 @@ var treeGenerator = function(famedTree, filler){
             else{
               relRelRowCell.className = relRelRowCell.className + " top-left"
             }
+          }
+        }
+        else{
+          if (famedTree.spacedRows.rows[y + 1] && (famedTree.spacedRows.rows[y][i].name == 'Married Uncle')){
+            console.log(famedTree.spacedRows.rows[y][i].name)
+            if(famedTree.spacedRows.rows[y + 1]){
+              var parentNodeInQuestion = famedTree.spacedRows.rows[y + 1][i + 1].parentNode
+              if(parentNodeInQuestion){
+                if((parentNodeInQuestion == famedTree.spacedRows.rows[y][i].marriedGeneId) || (parentNodeInQuestion == famedTree.spacedRows.rows[y][i].geneId)){
+                  relRelRowCell.className = relRelRowCell.className + " top-right"
+                }
+              }
+            }
+            console.log('-----------')
           }
         }
 
@@ -1573,7 +1597,9 @@ var treeGenerator = function(famedTree, filler){
 
 var filler = document.getElementById("fill-me");
 
-treeGenerator(x, filler)
+// treeGenerator(x, filler)
+
+console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
 
 var filler = document.getElementById("fill-me2");
 
