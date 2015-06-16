@@ -364,6 +364,17 @@ var FamilyTree = function(jsonObject){
 
     var readyAndChecked = false
 
+    var move = function (input_array, old_index, new_index) {
+      if (new_index >= input_array.length) {
+        var k = new_index - input_array.length;
+        while ((k--) + 1) {
+          input_array.push(undefined);
+        }
+      }
+      input_array.splice(new_index, 0, input_array.splice(old_index, 1)[0]);
+      return input_array; // for testing purposes
+    };
+
     while (!readyAndChecked){
       readyAndChecked = true
       for (var q = 0, qq = result.length; q < qq; q++) {
@@ -382,19 +393,24 @@ var FamilyTree = function(jsonObject){
                 adjuster ++;
               }
 
-              var range = {start: (famRecord.startIndex - adjuster), end: (famRecord.startIndex + famRecord.members.length - 1)}
+              var range = {start: (famRecord.startIndex - adjuster), end: (famRecord.startIndex + famRecord.members.length)}
 
               if (range.start > w){
-                // console.log(result[q][w].name)
-                // console.log(w)
-                // console.log(range.start - w )
-                // console.log(famRecord)
+                if(result[q + 1][w].gap){
+                  for(argh = 0, arghargh = famRecord.members.length; argh < arghargh; argh ++){
+                    move(result[q + 1], range.start + argh, w + argh)
+                  }
+                }
               }
               else if (range.end < w){
-                // console.log(result[q][w].name)
                 // console.log(w)
-                // console.log(range.end - w)
-                // console.log(famRecord)
+                // cheese = result[q + 1]
+                if(result[q + 1][w].gap){
+                  for(argh = 0, arghargh = famRecord.members.length; argh < arghargh; argh ++){
+                    console.log([range.end -argh -1, w -argh])
+                    move(result[q + 1], range.end - argh - 1,  w - argh)
+                  }
+                }
               }
             }
           };
