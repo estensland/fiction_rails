@@ -399,16 +399,21 @@ var FamilyTree = function(jsonObject){
                 if(result[q + 1][w].gap){
                   for(argh = 0, arghargh = famRecord.members.length; argh < arghargh; argh ++){
                     move(result[q + 1], range.start + argh, w + argh)
+
+                    if(argh === 0){
+                      famRecord.startIndex = w
+                    }
                   }
                 }
               }
               else if (range.end < w){
-                // console.log(w)
-                // cheese = result[q + 1]
                 if(result[q + 1][w].gap){
                   for(argh = 0, arghargh = famRecord.members.length; argh < arghargh; argh ++){
-                    console.log([range.end -argh -1, w -argh])
                     move(result[q + 1], range.end - argh - 1,  w - argh)
+
+                    if(argh === arghargh - 1){
+                      famRecord.startIndex = w - argh
+                    }
                   }
                 }
               }
@@ -462,66 +467,111 @@ famtree2  = new FamilyTree(famTree2)
     font-size: 0;
   }
 
+  .fam-tree-grid div{
+    box-sizing: border-box;
+  }
+
   .fam-tree-grid .person-row{
-    background-color: green;
+
     width: 100%;
-    height: 1%;
+    height: 17px;
   }
 
   .fam-tree-grid .person-row .person-square{
-    background-color: #aaa;
     vertical-align: top;
     display: inline-block;
-    width: 8.5%;
-    height: 100%;
+    width: 157.25px;
+    height: 18px;
     padding: 0;
     margin: 0;
+    border: 1px solid black;
+    box-sizing: border-box;
   }
 
   .fam-tree-grid .person-row .person-square p{
     margin-top: 0;
     text-align: center;
     font-size: 15px;
+    box-sizing: border-box;
   }
 
   .fam-tree-grid .person-row .relation-column{
-    background-color: #888;
     display: inline-block;
     vertical-align: top;
-    width: 1.5%;
-    height: 100%;
+    width: 27.25px;
+    height: 18px;
     padding: 0;
     margin: 0;
   }
 
 
   .fam-tree-grid .relation-row{
-    background-color: purple;
     width: 100%;
     height: 1%;
   }
 
   .fam-tree-grid .relation-row .person-square{
-    background-color: #888;
     vertical-align: top;
     display: inline-block;
-    width: 8.5%;
-    height: 100%;
+    width: 157.25px;
+    height: 18px;
 
     padding: 0;
     margin: 0;
   }
 
   .fam-tree-grid .relation-row .relation-column{
-    background-color: #aaa;
     display: inline-block;
     vertical-align: top;
-    width: 1.5%;
-    height: 100%;
+    width: 27.25px;
+    height: 18px;
 
     padding: 0;
     margin: 0;
   }
+
+
+  .top-inner-cross{
+    width: 100%;
+    display: inline-block;
+    height: 50%;
+  }
+
+
+  .bottom-inner-cross{
+    width: 100%;
+    display: inline-block;
+    height: 50%;
+  }
+
+
+  .top-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+
+  }
+
+  .top-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .bottom-inner-cross .left-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  .bottom-inner-cross .right-side{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+  }
+
+
+
 
   .bisected .top-inner-cross{
     height: 50%;
@@ -538,220 +588,59 @@ famtree2  = new FamilyTree(famTree2)
     height: 50%;
   }
 
-  .bottom-right .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-
-  }
 
   .bottom-right .top-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
     border-bottom: 1px solid black;
   }
 
   .bottom-right .bottom-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
     border-right: 1px solid black;
 
   }
 
   .bottom-right .bottom-inner-cross .right-side{
-    width: 50%;
     display: inline-block;
-    height: 100%;
-  }
-
-
-  .bottom-left .top-inner-cross {
-    width: 100%;
-    height: 50%;
-  }
-
-  .bottom-left .bottom-inner-cross {
-    width: 100%;
-    height: 50%;
   }
 
   .bottom-left .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
     border-bottom: 1px solid black;
-  }
-
-  .bottom-left .top-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
   }
 
   .bottom-left .bottom-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
     border-right: 1px solid black;
   }
-
-  .bottom-left .bottom-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
 
 
   .top-right-top-left .top-inner-cross {
-    width: 100%;
-    height: 50%;
     border-bottom: 1px solid black;
   }
 
-  .top-right-top-left .bottom-inner-cross {
-    width: 100%;
-    height: 50%;
-  }
-
   .top-right-top-left .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .top-right-top-left .top-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .top-right-top-left .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
     border-right: 1px solid black;
   }
 
-  .top-right-top-left .bottom-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
 
 
   .bottom-right-bottom-left .top-inner-cross {
-    width: 100%;
-    height: 50%;
     border-bottom: 1px solid black;
-  }
-
-  .bottom-right-bottom-left .bottom-inner-cross {
-    width: 100%;
-    height: 50%;
-  }
-
-  .bottom-right-bottom-left .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .bottom-right-bottom-left .top-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
   }
 
   .bottom-right-bottom-left .bottom-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
     border-right: 1px solid black;
   }
 
-  .bottom-right-bottom-left .bottom-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-
-  .top-left .top-inner-cross {
-    width: 100%;
-    height: 50%;
-  }
-
-  .top-left .bottom-inner-cross {
-    width: 100%;
-    height: 50%;
-  }
 
   .top-left .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .top-left .top-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .top-left .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
   }
 
 
-
-  .top-right .top-inner-cross {
-    width: 100%;
-    height: 50%;
+  .top-right .top-inner-cross .right-side{
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
   }
 
-  .top-right .bottom-inner-cross {
-    width: 100%;
-    height: 50%;
-  }
-
-  .top-right .top-inner-cross div{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .top-right .bottom-inner-cross div{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .top-right .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-  }
-
-  .top-right .top-inner-cross .left-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-    border-right: 1px solid black;
-  }
-
-  .top-right .bottom-inner-cross .right-side{
-    width: 50%;
-    display: inline-block;
-    height: 100%;
-    border-top: 1px solid black;
-  }
 
 
 </style>
@@ -1435,6 +1324,10 @@ var treeGenerator = function(famedTree, filler){
               relRowstatus = "bottom-left"
             }
             else if(!nextInLine || (nextInLine && nextInLine.parentNode == nextRowCorrespondingPerson.parentNode && nextInLine.marriedGeneId && famData.startIndex + famData.members.length < i + 3)){
+              if(nextRowCorrespondingPerson.name === 'Son'){
+                console.log(i)
+                console.log(famData.startIndex)
+              }
               relRowstatus = "bottom-left"
             }
             else{
@@ -1564,7 +1457,6 @@ var treeGenerator = function(famedTree, filler){
         }
         else{
           if (famedTree.spacedRows.rows[y + 1] && (famedTree.spacedRows.rows[y][i].name == 'Married Uncle')){
-            console.log(famedTree.spacedRows.rows[y][i].name)
             if(famedTree.spacedRows.rows[y + 1]){
               var parentNodeInQuestion = famedTree.spacedRows.rows[y + 1][i + 1].parentNode
               if(parentNodeInQuestion){
@@ -1573,7 +1465,6 @@ var treeGenerator = function(famedTree, filler){
                 }
               }
             }
-            console.log('-----------')
           }
         }
 
@@ -1613,7 +1504,7 @@ var treeGenerator = function(famedTree, filler){
 
 var filler = document.getElementById("fill-me");
 
-// treeGenerator(x, filler)
+treeGenerator(x, filler)
 
 console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=")
 
