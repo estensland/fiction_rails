@@ -1,1 +1,18 @@
-{{json}}
+<table>
+  <tr>
+    <td> Name:</td>
+    <td>{{object.name}}</td>
+  </tr>
+  <tr>
+    <td> Translation:</td>
+    <td>{{object.translation}}</td>
+  </tr>
+  <tr>
+    <td> Realm:</td>
+    <td><a ng-href="#/realms/{{object.realm_id}}">{{object.realm.name}}</a></td>
+  </tr>
+  <tr>
+    <td> Description:</td>
+    <td>{{object.description}}</td>
+  </tr>
+</table>
