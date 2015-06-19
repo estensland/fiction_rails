@@ -1,1 +1,10 @@
-{{json}}
+<table>
+  <tr>
+    <td> Name:</td>
+    <td>{{object.name}}</td>
+  </tr>
+  <tr>
+    <td> Description:</td>
+    <td><a ng-href="#/houses/{{object.primary_house.id}}">{{object.primary_house.name}}</a></td>
+  </tr>
+</table>
