@@ -1,1 +1,5 @@
-{{json}}
+<table>
+  <tr ng-repeat="character in json">
+    <characterInfoPanel attributes="Object.keys(character)" object="json"></characterInfoPanel>
+  </tr>
+</table>
