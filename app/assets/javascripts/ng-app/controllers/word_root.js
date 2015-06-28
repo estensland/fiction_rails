@@ -7,7 +7,7 @@ angular.module('myApp.wordRoot', ['ngRoute', 'templates'])
     templateUrl: '<%= asset_path("word_root.html") %>',
     resolve: {
       jsonGrab: ['$http', '$route', function($http, $route) {
-        return $http.get('/api/word_roots/').then(function(response) {
+        return $http.get('/api/word_roots/' + $route.current.params.id)).then(function(response) {
           return response.data;
         });
       }],
