@@ -7,7 +7,7 @@ angular.module('myApp.language', ['ngRoute', 'templates'])
     templateUrl: '<%= asset_path("language.html") %>',
     resolve: {
       jsonGrab: ['$http', '$route', function($http, $route) {
-        return $http.get('/api/language/').then(function(response) {
+        return $http.get('/api/language/'+ $route.current.params.id)).then(function(response) {
           return response.data;
         });
       }],
