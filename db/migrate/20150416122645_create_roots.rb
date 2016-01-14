@@ -4,6 +4,7 @@ class CreateRoots < ActiveRecord::Migration
       t.string  :root
       t.string  :meaning
       t.integer :language_id
+      t.integer :parent_id
       
       t.timestamps
     end
