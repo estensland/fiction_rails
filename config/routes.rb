@@ -41,5 +41,7 @@ Rails.application.routes.draw do
     resources :houses, only: [:index, :show]
   end
   get '/test' => 'welcome#test'
-  get '*path' => 'welcome#index'
+  resources :characters
+  resources :houses
+  # get '*path' => 'welcome#index'
 end

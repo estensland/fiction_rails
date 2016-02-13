@@ -15,5 +15,6 @@ angular.module('myApp.characters', ['ngRoute', 'templates'])
   });
 }])
 .controller('CharactersCtrl', ['$scope', 'jsonGrab', function($scope, jsonGrab) {
+  debugger
   $scope.json = jsonGrab;
 }]);

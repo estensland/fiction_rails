@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416122413) do
+ActiveRecord::Schema.define(version: 20160114122645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,22 @@ ActiveRecord::Schema.define(version: 20150416122413) do
 
   add_index "ethnies", ["ancestry"], name: "index_ethnies_on_ancestry", using: :btree
 
+  create_table "form_roots", force: :cascade do |t|
+    t.string   "meaning"
+    t.integer  "root_id"
+    t.integer  "form_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.string   "name"
+    t.string   "formula"
+    t.integer  "language_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "houses", force: :cascade do |t|
     t.string   "name"
     t.string   "translation"
@@ -69,6 +85,12 @@ ActiveRecord::Schema.define(version: 20150416122413) do
     t.integer  "realm_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.boolean "root_structure"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -101,6 +123,15 @@ ActiveRecord::Schema.define(version: 20150416122413) do
   end
 
   add_index "realms", ["ancestry"], name: "index_realms_on_ancestry", using: :btree
+
+  create_table "roots", force: :cascade do |t|
+    t.string   "root"
+    t.string   "meaning"
+    t.integer  "language_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "timeline_event_relateds", force: :cascade do |t|
     t.integer "timeline_event_id"

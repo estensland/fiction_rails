@@ -8,7 +8,7 @@ class Character < ActiveRecord::Base
   belongs_to :primary_title,  foreign_key: "title_id", class_name: "Title"
   has_many :titles
   has_many :peerages, through: :titles
-  has_many :timeline_event_relateds
+  has_many :timeline_event_relateds, as: :related
   has_many :timeline_events, through: :timeline_event_relateds, source: :related, source_type: 'Character'
 
   after_create :merge_houses

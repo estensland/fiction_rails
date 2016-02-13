@@ -10,10 +10,10 @@ class StationAgentController < ApplicationController
   end
 
   def show_all_of_a_model
-    @class = params['sa_model'].constantize
+    @class = params['sa_model'].classify.constantize
 
     if params['associations_of_model']
-      @objects = params['associations_of_model'].constantize.find(params['associations_of_id']).send(params['association']).order(:id)
+      @objects = params['associations_of_model'].classify.constantize.find(params['associations_of_id']).send(params['association']).order(:id)
     else
       @objects = @class.order(:id)
     end
@@ -33,7 +33,7 @@ class StationAgentController < ApplicationController
 
   def update_anything
     attribs = params[params['sa_model'].downcase]
-    object = params['sa_model'].constantize.find(attribs['id'])
+    object = params['sa_model'].classify.constantize.find(attribs['id'])
     attribs.each do |attr, val|
       object.send("#{attr}=", val)
     end
@@ -57,7 +57,7 @@ class StationAgentController < ApplicationController
   private
 
   def grab_and_set_model_attrs
-    @model = params['sa_model'].capitalize.constantize.find(params['sa_id'])
+    @model = params['sa_model'].classify.constantize.find(params['sa_id'])
 
     @attributes = @model.attributes
     @attr_hash = @model.class.columns_hash

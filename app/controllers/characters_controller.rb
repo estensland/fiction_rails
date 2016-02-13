@@ -4,8 +4,25 @@ class CharactersController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-    params['offset'] ||= 0
-    @characters = Character.limit(100).offset(params['offset'])
+    @characters = Character.where(nil)
+
+    if params['search']
+      @characters = @characters.where(
+        Character.arel_table['native_name'].matches("%#{params['search']}%").or(
+          Character.arel_table['bailic_name'].matches("%#{params['search']}%")
+        )
+      )
+    end
+
+    params['page'] ||= 1
+    @limit = params['number'] || 30
+
+
+    @total_pages = (@characters.count / @limit.to_f).ceil
+
+    offset = ((params['page'].to_i - 1) * @limit.to_i)
+
+    @characters = @characters.limit(@limit).offset(offset)
   end
 
   def show
