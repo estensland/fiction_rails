@@ -29,3 +29,8 @@
 .background-color-two {
   background-color: #ED7E0E;
 }
+
+.header-list li{
+  display: inline-block;
+  list-style: none;
+}

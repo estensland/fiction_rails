@@ -32,16 +32,19 @@ Rails.application.routes.draw do
   # get 'timeline_events/:id' => 'timeline_events#show', as: :timeline_event
 
   namespace :api, defaults: {format: :json} do
-		resources :timeline_events, only: [:index, :show]
-		resources :timelines, only: [:index, :show]
-		resources :realms, only: [:index, :show]
-		resources :characters, only: [:index, :show] do
+    resources :timeline_events, only: [:index, :show]
+    resources :timelines, only: [:index, :show]
+    resources :realms, only: [:index, :show]
+    resources :characters, only: [:index, :show] do
       get 'search', on: :collection
     end
     resources :houses, only: [:index, :show]
   end
-  get '/test' => 'welcome#test'
+  # get '/test' => 'welcome#test'
   resources :characters
   resources :houses
-  # get '*path' => 'welcome#index'
+  resources :realms
+  resources :peerages
+  resources :timelines
+  resources :timeline_events
 end
