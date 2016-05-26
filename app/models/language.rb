@@ -1,4 +1,4 @@
 class Language < ActiveRecord::Base
-  has_many :word_roots
-  
+  has_many :roots
+
 end
