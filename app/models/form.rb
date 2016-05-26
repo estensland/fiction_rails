@@ -4,6 +4,19 @@ class Form < ActiveRecord::Base
 
 
   def conjugate(root)
-    formula.gsub('1', root[0]).gsub('2', root[1]).gsub('3', root[2]).downcase.capitalize
+    formula.
+      gsub('0', root[0]).
+      gsub('1', root[1]).
+      gsub('2', root[2]).
+
+      gsub('3', 'ṅ').
+      gsub('4', 'ñ').
+      gsub('5', 'ğ').
+      gsub('5', 'ğ').
+      gsub('6', 'ç').
+      gsub('7', 'ş').
+      gsub('8', 'Þ').
+      gsub('9', 'ı').
+      downcase.capitalize
   end
 end
