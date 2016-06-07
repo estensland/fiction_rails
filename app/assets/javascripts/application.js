@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular-rails-templates
-//= require_tree ../templates
 
-//= require_tree .
+//= require zone.js/dist/zone
+//= require reflect-metadata/Reflect
+//= require systemjs/dist/system.src
+
+//= require idocheann-app/systemjs.config
+
+

@@ -14,6 +14,21 @@ Rails.application.routes.draw do
   get 'sa/:sa_model/:sa_id/new' => 'station_agent#new_anything', as: :sa_new
   post 'sa/:sa_model/:sa_id' => 'station_agent#update_anything', as: :sa_update
 
+
+
+
+  namespace :api, defaults: {format: :json} do
+    resources :timeline_events, only: [:index, :show]
+    resources :timelines, only: [:index, :show]
+    resources :realms, only: [:index, :show]
+    resources :characters, only: [:index, :show] do
+      get 'search', on: :collection
+    end
+    resources :houses, only: [:index, :show]
+  end
+
+
+
   # get 'characters/' => 'characters#index', as: :characters
   # get 'characters/:id' => 'characters#show', as: :character
 
@@ -31,20 +46,12 @@ Rails.application.routes.draw do
   # get 'timeline_events/' => 'timeline_events#index', as: :timeline_events
   # get 'timeline_events/:id' => 'timeline_events#show', as: :timeline_event
 
-  namespace :api, defaults: {format: :json} do
-    resources :timeline_events, only: [:index, :show]
-    resources :timelines, only: [:index, :show]
-    resources :realms, only: [:index, :show]
-    resources :characters, only: [:index, :show] do
-      get 'search', on: :collection
-    end
-    resources :houses, only: [:index, :show]
-  end
-  # get '/test' => 'welcome#test'
-  resources :characters
-  resources :houses
-  resources :realms
-  resources :peerages
-  resources :timelines
-  resources :timeline_events
+  # resources :characters
+  # resources :houses
+  # resources :realms
+  # resources :peerages
+  # resources :timelines
+  # resources :timeline_events
+
+
 end

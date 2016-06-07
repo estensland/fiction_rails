@@ -14,8 +14,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'angular-rails-templates'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -30,6 +28,9 @@ gem 'pry'
 gem 'devise', '~> 3.4.0'
 gem 'ancestry'
 gem 'genealogy'
+
+
+gem 'slim', '3.0.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
