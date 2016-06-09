@@ -6,17 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require('@angular/core');
-var characters_component_1 = require('./characters/characters.component');
-var AppComponent = (function () {
-    function AppComponent() {
+require('rxjs/add/operator/map');
+var CharacterService = (function () {
+    function CharacterService(http) {
+        this.http = http;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'idocheann-app',
-            template: "\n    <h1>Idocheann</h1>\n    <characters></characters>\n  ",
-            directives: [characters_component_1.CharactersComponent]
-        })
-    ], AppComponent);
-    return AppComponent;
+    CharacterService.prototype.getCharacters = function () {
+        return this.http.get('/api/characters')
+            .map(function (res) { return res.json(); });
+    };
+    CharacterService = __decorate([
+        core_1.Injectable()
+    ], CharacterService);
+    return CharacterService;
 }());
-exports.AppComponent = AppComponent;
+exports.CharacterService = CharacterService;
