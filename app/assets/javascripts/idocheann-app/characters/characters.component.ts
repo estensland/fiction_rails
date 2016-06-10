@@ -6,7 +6,6 @@ import { CharacterService } from './character.service';
 @Component({
   selector: 'characters',
   template: "<h2> ARGH THE UNDESERVING </h2>",
-  styleUrls: ['characters.component.css'],
   providers: [CharacterService]
 })
 

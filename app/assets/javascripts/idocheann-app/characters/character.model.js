@@ -5,3 +5,4 @@ var Character = (function () {
     return Character;
 }());
 exports.Character = Character;
+//# sourceMappingURL=character.model.js.map

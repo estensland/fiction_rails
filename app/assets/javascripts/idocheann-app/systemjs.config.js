@@ -5,10 +5,10 @@
 (function(global) {
   // map tells the System loader where to look for things
   var map = {
-    'idocheann-app':              'assets/idocheann-app', // 'dist',
-    '@angular':                   'assets/@angular',
-    'angular2-in-memory-web-api': 'assets/angular2-in-memory-web-api',
-    'rxjs':                       'assets/rxjs'
+    'idocheann-app':              '/assets/idocheann-app', // 'dist',
+    '@angular':                   '/assets/@angular',
+    'angular2-in-memory-web-api': '/assets/angular2-in-memory-web-api',
+    'rxjs':                       '/assets/rxjs'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
