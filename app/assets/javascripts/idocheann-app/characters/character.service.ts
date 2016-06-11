@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Character } from './character.model';
+import { Character } from '../models/character.model';
 
 @Injectable()
 export class CharacterService {

@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var characters_component_1 = require('./characters/characters.component');
 var character_service_1 = require('./characters/character.service');
 var AppComponent = (function () {
@@ -20,7 +21,20 @@ var AppComponent = (function () {
             template: "\n    <h1>Idocheann</h1>\n    <characters></characters>\n  ",
             directives: [characters_component_1.CharactersComponent],
             providers: [character_service_1.CharacterService]
-        }), 
+        }),
+        router_deprecated_1.RouteConfig([
+            {
+                path: '/characters',
+                name: 'Characters',
+                component: characters_component_1.CharactersComponent,
+                useAsDefault: true
+            } /*,
+            {
+              path: '/roots',
+              name: 'Roots',
+              component: RootsComponent,
+            }*/
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

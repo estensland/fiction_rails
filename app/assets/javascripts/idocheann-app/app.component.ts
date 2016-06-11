@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
+
+
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterService } from './characters/character.service';
 
@@ -11,4 +15,22 @@ import { CharacterService } from './characters/character.service';
   directives: [CharactersComponent],
   providers: [CharacterService]
 })
+
+ @RouteConfig([
+    {
+      path: '/characters',
+      name: 'Characters',
+      component: CharactersComponent,
+      useAsDefault: true
+    }/*,
+    {
+      path: '/roots',
+      name: 'Roots',
+      component: RootsComponent,
+    }*/
+  ])
+
+
+
+
 export class AppComponent { }
