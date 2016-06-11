@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Character } from './characters/character.model';
 import { CharactersComponent } from './characters/characters.component';
+import { CharacterService } from './characters/character.service';
 
 @Component({
   selector: 'idocheann-app',
@@ -8,6 +8,7 @@ import { CharactersComponent } from './characters/characters.component';
     <h1>Idocheann</h1>
     <characters></characters>
   `,
-  directives: [CharactersComponent]
+  directives: [CharactersComponent],
+  providers: [CharacterService]
 })
 export class AppComponent { }

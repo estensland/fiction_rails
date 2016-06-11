@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var characters_component_1 = require('./characters/characters.component');
+var character_service_1 = require('./characters/character.service');
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -17,7 +18,8 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'idocheann-app',
             template: "\n    <h1>Idocheann</h1>\n    <characters></characters>\n  ",
-            directives: [characters_component_1.CharactersComponent]
+            directives: [characters_component_1.CharactersComponent],
+            providers: [character_service_1.CharacterService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

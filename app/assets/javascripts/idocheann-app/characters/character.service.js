@@ -11,13 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
+require('rxjs/add/operator/toPromise');
 var CharacterService = (function () {
     function CharacterService(http) {
         this.http = http;
+        this.apiUrl = '/api/characters';
     }
-    CharacterService.prototype.getCharacters = function () {
-        return this.http.get('/api/characters')
-            .map(function (res) { return res.json(); });
+    CharacterService.prototype.query = function () {
+        return this.http.get(this.apiUrl)
+            .toPromise()
+            .then(function (response) { return response.json(); });
     };
     CharacterService = __decorate([
         core_1.Injectable(), 

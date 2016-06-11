@@ -5,7 +5,7 @@ class Api::CharactersController < ApplicationController
 
 
   def index
-    render json: Character.limit(30), status: 200
+    render json: Character.order(:composite_name), status: 200
   end
 
 

@@ -16,13 +16,20 @@ var CharactersComponent = (function () {
     }
     CharactersComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.characterService.getCharacters()
-            .subscribe(function (characters) { return _this.characters = characters; });
+        if (!this.characters) {
+            this.characters = [];
+        }
+        this.characterService.query()
+            .then(function (characters) { return _this.characters = characters; }).catch(function (error) { return _this.error = error; });
     };
     CharactersComponent = __decorate([
         core_1.Component({
             selector: 'characters',
-            template: "<h2> ARGH THE UNDESERVING </h2>",
+            template: "\
+    <ul> Characters: \
+      <li *ngFor='let character of characters'>{{character.composite_name}}</li>\
+    </ul>\
+  ",
             providers: [character_service_1.CharacterService]
         }), 
         __metadata('design:paramtypes', [character_service_1.CharacterService])

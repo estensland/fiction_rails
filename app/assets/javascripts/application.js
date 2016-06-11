@@ -13,10 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 
+//= require core-js/client/shim.min
+
 //= require zone.js/dist/zone
 //= require reflect-metadata/Reflect
 //= require systemjs/dist/system.src
 
 //= require idocheann-app/systemjs.config
-
-
