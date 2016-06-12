@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../models/character.model';
 import { CharacterService } from './character.service';
-
+import { Router, RouterLink } from '@angular/router-deprecated';
 
 @Component({
   selector: 'characters',
-  template: "\
-    <ul> Characters: \
-      <li *ngFor='let character of characters'>{{character.composite_name}}</li>\
-    </ul>\
-  ",
+  template: `
+    <ul> Characters:
+      <li *ngFor='let character of characters'>{{character.composite_name}}</li>
+    </ul>
+  `,
+  directives: [RouterLink],
   providers: [CharacterService]
 })
 

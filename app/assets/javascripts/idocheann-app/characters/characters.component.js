@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var character_service_1 = require('./character.service');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var CharactersComponent = (function () {
     function CharactersComponent(characterService) {
         this.characterService = characterService;
@@ -25,11 +26,8 @@ var CharactersComponent = (function () {
     CharactersComponent = __decorate([
         core_1.Component({
             selector: 'characters',
-            template: "\
-    <ul> Characters: \
-      <li *ngFor='let character of characters'>{{character.composite_name}}</li>\
-    </ul>\
-  ",
+            template: "\n    <ul> Characters:\n      <li *ngFor='let character of characters'>{{character.composite_name}}</li>\n    </ul>\n  ",
+            directives: [router_deprecated_1.RouterLink],
             providers: [character_service_1.CharacterService]
         }), 
         __metadata('design:paramtypes', [character_service_1.CharacterService])
