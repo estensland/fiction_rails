@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :timeline_events, only: [:index, :show]
     resources :timelines, only: [:index, :show]
     resources :realms, only: [:index, :show]
+    resources :roots, only: [:index, :show]
     resources :characters, only: [:index, :show] do
       get 'search', on: :collection
     end

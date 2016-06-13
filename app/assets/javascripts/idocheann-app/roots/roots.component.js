@@ -9,20 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var root_service_1 = require('./root.service');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var RootsComponent = (function () {
-    function RootsComponent() {
+    function RootsComponent(rootService) {
+        this.rootService = rootService;
     }
     RootsComponent.prototype.ngOnInit = function () {
+        var _this = this;
         if (!this.roots) {
             this.roots = [];
         }
+        this.rootService.query()
+            .then(function (roots) { return _this.roots = roots; }).catch(function (error) { return _this.error = error; });
     };
     RootsComponent = __decorate([
         core_1.Component({
             selector: 'roots',
-            template: "\n    <p> Rootshere</p>\n  "
+            template: "\n    <ul> Roots:\n      <li *ngFor='let root of roots'>{{root.root}} : {{root.meaning}}</li>\n    </ul>\n  ",
+            directives: [router_deprecated_1.RouterLink],
+            providers: [root_service_1.RootService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [root_service_1.RootService])
     ], RootsComponent);
     return RootsComponent;
 }());
