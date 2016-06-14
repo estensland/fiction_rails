@@ -12,12 +12,12 @@ import { RootService } from './roots/root.service';
 @Component({
   selector: 'idocheann-app',
   template: `
-    <h1>Idocheann</h1>
     <a [routerLink]="['Characters']">Characters</a>
+    <a [routerLink]="['Roots']">Roots</a>
     <router-outlet></router-outlet>
   `,
-  directives: [CharactersComponent, RootsComponent, RouterLink],
-  providers: [CharacterService, RootService]
+  directives: [ROUTER_DIRECTIVES, CharactersComponent, RootsComponent, RouterLink],
+  providers: [ROUTER_PROVIDERS, CharacterService, RootService]
 })
 
  @RouteConfig([

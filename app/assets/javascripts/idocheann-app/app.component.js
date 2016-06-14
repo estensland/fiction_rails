@@ -21,9 +21,9 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'idocheann-app',
-            template: "\n    <h1>Idocheann</h1>\n    <a [routerLink]=\"['Characters']\">Characters</a>\n    <router-outlet></router-outlet>\n  ",
-            directives: [characters_component_1.CharactersComponent, roots_component_1.RootsComponent, router_deprecated_1.RouterLink],
-            providers: [character_service_1.CharacterService, root_service_1.RootService]
+            template: "\n    <a [routerLink]=\"['Characters']\">Characters</a>\n    <a [routerLink]=\"['Roots']\">Roots</a>\n    <router-outlet></router-outlet>\n  ",
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES, characters_component_1.CharactersComponent, roots_component_1.RootsComponent, router_deprecated_1.RouterLink],
+            providers: [router_deprecated_1.ROUTER_PROVIDERS, character_service_1.CharacterService, root_service_1.RootService]
         }),
         router_deprecated_1.RouteConfig([
             {
