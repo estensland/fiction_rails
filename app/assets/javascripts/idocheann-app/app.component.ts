@@ -4,6 +4,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouterLink, Router} f
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { CharactersComponent } from './characters/characters.component';
+import { CharacterComponent } from './characters/character.component';
 import { CharacterService } from './characters/character.service';
 
 import { RootsComponent } from './roots/roots.component';
@@ -25,6 +26,11 @@ import { RootService } from './roots/root.service';
       path: '/characters',
       name: 'Characters',
       component: CharactersComponent
+    },
+    {
+      path: '/characters/:id',
+      name: 'Character',
+      component: CharacterComponent
     },
     {
       path: '/roots',

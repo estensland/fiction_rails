@@ -13,8 +13,21 @@ export class CharacterService {
 
   constructor(private http: Http) { }
 
-  query(): Promise<Character[]> {
+  query(params: any): Promise<Character[]> {
+    let hitUrl = this.apiUrl
+
+    if (params.get('search')){
+      hitUrl = hitUrl + '?search=' + params.get('search');
+    }
     return this.http.get(this.apiUrl)
+      .toPromise()
+      .then(response => response.json());
+  }
+
+  get(params: any): Promise<Character[]> {
+    let hitUrl = this.apiUrl + '/' + params.get('id');
+
+    return this.http.get(hitUrl)
       .toPromise()
       .then(response => response.json());
   }

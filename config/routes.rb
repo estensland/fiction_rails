@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
 
   get '/characters', to: 'welcome#index'
+  get '/characters/:id', to: 'welcome#index'
   get '/roots', to: 'welcome#index'
 
   # get 'characters/' => 'characters#index', as: :characters

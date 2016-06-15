@@ -11,29 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var character_service_1 = require('./character.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var CharactersComponent = (function () {
-    function CharactersComponent(characterService, params) {
+var CharacterComponent = (function () {
+    function CharacterComponent(characterService, params) {
         this.characterService = characterService;
         this.params = params;
     }
-    CharactersComponent.prototype.ngOnInit = function () {
+    CharacterComponent.prototype.ngOnInit = function () {
         var _this = this;
-        if (!this.characters) {
-            this.characters = [];
+        if (!this.character) {
+            this.character = { id: 1 };
         }
-        this.characterService.query(this.params)
-            .then(function (characters) { return _this.characters = characters; }).catch(function (error) { return _this.error = error; });
+        this.characterService.get(this.params)
+            .then(function (character) { return _this.character = character; }).catch(function (error) { return _this.error = error; });
     };
-    CharactersComponent = __decorate([
+    CharacterComponent = __decorate([
         core_1.Component({
-            selector: 'characters',
-            template: "\n    <ul> Characters:\n      <li *ngFor='let character of characters'><a [routerLink]=\"['Character', {id: character.id }]\">{{character.composite_name}}</a></li>\n    </ul>\n  ",
+            selector: 'character',
+            template: "\n    <h2>Character: {{character.composite_name}}</h2>\n  ",
             directives: [router_deprecated_1.RouterLink],
             providers: [character_service_1.CharacterService]
         }), 
         __metadata('design:paramtypes', [character_service_1.CharacterService, router_deprecated_1.RouteParams])
-    ], CharactersComponent);
-    return CharactersComponent;
+    ], CharacterComponent);
+    return CharacterComponent;
 }());
-exports.CharactersComponent = CharactersComponent;
-//# sourceMappingURL=characters.component.js.map
+exports.CharacterComponent = CharacterComponent;
+//# sourceMappingURL=character.component.js.map

@@ -17,8 +17,18 @@ var CharacterService = (function () {
         this.http = http;
         this.apiUrl = '/api/characters';
     }
-    CharacterService.prototype.query = function () {
+    CharacterService.prototype.query = function (params) {
+        var hitUrl = this.apiUrl;
+        if (params.get('search')) {
+            hitUrl = hitUrl + '?search=' + params.get('search');
+        }
         return this.http.get(this.apiUrl)
+            .toPromise()
+            .then(function (response) { return response.json(); });
+    };
+    CharacterService.prototype.get = function (params) {
+        var hitUrl = this.apiUrl + '/' + params.get('id');
+        return this.http.get(hitUrl)
             .toPromise()
             .then(function (response) { return response.json(); });
     };

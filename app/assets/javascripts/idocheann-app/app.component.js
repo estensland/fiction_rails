@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var characters_component_1 = require('./characters/characters.component');
+var character_component_1 = require('./characters/character.component');
 var character_service_1 = require('./characters/character.service');
 var roots_component_1 = require('./roots/roots.component');
 var root_service_1 = require('./roots/root.service');
@@ -30,6 +31,11 @@ var AppComponent = (function () {
                 path: '/characters',
                 name: 'Characters',
                 component: characters_component_1.CharactersComponent
+            },
+            {
+                path: '/characters/:id',
+                name: 'Character',
+                component: character_component_1.CharacterComponent
             },
             {
                 path: '/roots',

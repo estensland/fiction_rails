@@ -4,27 +4,25 @@ import { CharacterService } from './character.service';
 import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
 
 @Component({
-  selector: 'characters',
+  selector: 'character',
   template: `
-    <ul> Characters:
-      <li *ngFor='let character of characters'><a [routerLink]="['Character', {id: character.id }]">{{character.composite_name}}</a></li>
-    </ul>
+    <h2>Character: {{character.composite_name}}</h2>
   `,
   directives: [RouterLink],
   providers: [CharacterService]
 })
 
-export class CharactersComponent implements OnInit {
-  characters: any[];
+export class CharacterComponent implements OnInit {
+  character: any;
   error: any;
   params: any;
 
   constructor(private characterService: CharacterService, params: RouteParams) { this.params = params }
 
   ngOnInit() {
-    if (!this.characters) { this.characters  = []}
-    this.characterService.query(this.params)
-      .then(characters => this.characters = characters).catch(error => this.error = error);
+    if (!this.character) { this.character = {id: 1}}
+    this.characterService.get(this.params)
+      .then(character => this.character = character).catch(error => this.error = error);
   }
 
 }
