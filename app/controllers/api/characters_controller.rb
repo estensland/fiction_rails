@@ -10,6 +10,7 @@ class Api::CharactersController < ApplicationController
 
 
   def show
+    binding.pry
     render json: Character.find(params['id']).api_ready, status: 200
   end
 
