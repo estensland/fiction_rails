@@ -10,27 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
-.color-one {
-  color: #2B2966;
-}
-
-.color-two {
-  color: #ED7E0E;
-}
-
-.background-color-one {
-  background-color: #2B2966;
-}
-
-.background-color-two {
-  background-color: #ED7E0E;
-}
-
-.header-list li{
-  display: inline-block;
-  list-style: none;
-}
+@import "bootstrap-sprockets";
+@import "bootstrap";
