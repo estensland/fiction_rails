@@ -22,6 +22,12 @@ var RootService = (function () {
             .toPromise()
             .then(function (response) { return response.json(); });
     };
+    RootService.prototype.get = function (params) {
+        var hitUrl = this.apiUrl + '/' + params.get('id');
+        return this.http.get(hitUrl)
+            .toPromise()
+            .then(function (response) { return response.json(); });
+    };
     RootService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

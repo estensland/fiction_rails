@@ -4,7 +4,7 @@ class Api::RootsController < ApplicationController
   end
 
   def show
-    render json: Root.find(params['id']).api_ready, status: 200
+    render json: Root.find(params['id']).to_json, status: 200
   end
 
   def search

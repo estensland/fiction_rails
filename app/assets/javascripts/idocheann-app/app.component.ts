@@ -8,6 +8,7 @@ import { CharacterDetailsComponent } from './components/character_details/charac
 import { CharacterService } from './providers/character.service';
 
 import { RootListComponent } from './components/root_list/root_list.component';
+import { RootDetailsComponent } from './components/root_details/root_details.component';
 import { RootService } from './providers/root.service';
 
 @Component({
@@ -31,6 +32,11 @@ import { RootService } from './providers/root.service';
       path: '/characters/:id',
       name: 'Character',
       component: CharacterDetailsComponent
+    },
+    {
+      path: '/roots/:id',
+      name: 'Root',
+      component: RootDetailsComponent
     },
     {
       path: '/roots',

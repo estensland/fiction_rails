@@ -11,28 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var root_service_1 = require('../../providers/root.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var RootListComponent = (function () {
-    function RootListComponent(rootService) {
+var RootDetailsComponent = (function () {
+    function RootDetailsComponent(rootService, params) {
         this.rootService = rootService;
+        this.params = params;
     }
-    RootListComponent.prototype.ngOnInit = function () {
+    RootDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        if (!this.roots) {
-            this.roots = [];
+        if (!this.root) {
+            this.root = { id: 1 };
         }
-        this.rootService.query()
-            .then(function (roots) { return _this.roots = roots; }).catch(function (error) { return _this.error = error; });
+        this.rootService.get(this.params)
+            .then(function (root) { return _this.root = root; }).catch(function (error) { return _this.error = error; });
     };
-    RootListComponent = __decorate([
+    RootDetailsComponent = __decorate([
         core_1.Component({
-            selector: 'root_list',
-            template: "\n    <ul> Roots:\n      <li *ngFor='let root of roots'>\n        <a [routerLink]=\"['Root', {id: root.id }]\">{{root.root}}</a> : {{root.meaning}}\n      </li>\n    </ul>\n  ",
+            selector: 'root',
+            template: "\n    <h2>{{root.composite_name}}</h2>\n    <div class=\"col-md-6\">\n      <table class=\"table table-striped table-bordered\">\n        <tr>\n          <td><strong>Root:</strong></td>\n          <td>{{root.root}}</td>\n        </tr>\n        <tr>\n          <td><strong>Meaning:</strong></td>\n          <td>{{root.meaning}}</td>\n        </tr>\n      </table>\n    </div>\n  ",
             directives: [router_deprecated_1.RouterLink],
             providers: [root_service_1.RootService]
         }), 
-        __metadata('design:paramtypes', [root_service_1.RootService])
-    ], RootListComponent);
-    return RootListComponent;
+        __metadata('design:paramtypes', [root_service_1.RootService, router_deprecated_1.RouteParams])
+    ], RootDetailsComponent);
+    return RootDetailsComponent;
 }());
-exports.RootListComponent = RootListComponent;
-//# sourceMappingURL=root_list.component.js.map
+exports.RootDetailsComponent = RootDetailsComponent;
+//# sourceMappingURL=root_details.component.js.map

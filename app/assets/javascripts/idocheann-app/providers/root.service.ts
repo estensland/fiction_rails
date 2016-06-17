@@ -19,4 +19,12 @@ export class RootService {
       .then(response => response.json());
   }
 
+  get(params: any): Promise<Root[]> {
+    let hitUrl = this.apiUrl + '/' + params.get('id');
+
+    return this.http.get(hitUrl)
+      .toPromise()
+      .then(response => response.json());
+  }
+
 }

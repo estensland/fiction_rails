@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Root } from '../../models/root.model';
 import { RootService } from '../../providers/root.service';
-import { Router, RouterLink } from '@angular/router-deprecated';
+import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
 
 @Component({
   selector: 'root_list',
   template: `
     <ul> Roots:
-      <li *ngFor='let root of roots'>{{root.root}} : {{root.meaning}}</li>
+      <li *ngFor='let root of roots'>
+        <a [routerLink]="['Root', {id: root.id }]">{{root.root}}</a> : {{root.meaning}}
+      </li>
     </ul>
   `,
   directives: [RouterLink],

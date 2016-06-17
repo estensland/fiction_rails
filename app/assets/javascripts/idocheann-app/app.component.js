@@ -14,6 +14,7 @@ var character_list_component_1 = require('./components/character_list/character_
 var character_details_component_1 = require('./components/character_details/character_details.component');
 var character_service_1 = require('./providers/character.service');
 var root_list_component_1 = require('./components/root_list/root_list.component');
+var root_details_component_1 = require('./components/root_details/root_details.component');
 var root_service_1 = require('./providers/root.service');
 var AppComponent = (function () {
     function AppComponent(router) {
@@ -36,6 +37,11 @@ var AppComponent = (function () {
                 path: '/characters/:id',
                 name: 'Character',
                 component: character_details_component_1.CharacterDetailsComponent
+            },
+            {
+                path: '/roots/:id',
+                name: 'Root',
+                component: root_details_component_1.RootDetailsComponent
             },
             {
                 path: '/roots',
