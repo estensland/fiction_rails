@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Root } from '../models/root.model';
-import { RootService } from './root.service';
+import { Root } from '../../models/root.model';
+import { RootService } from '../../providers/root.service';
 import { Router, RouterLink } from '@angular/router-deprecated';
 
 @Component({
-  selector: 'roots',
+  selector: 'root_list',
   template: `
     <ul> Roots:
       <li *ngFor='let root of roots'>{{root.root}} : {{root.meaning}}</li>
@@ -14,7 +14,7 @@ import { Router, RouterLink } from '@angular/router-deprecated';
   providers: [RootService]
 })
 
-export class RootsComponent implements OnInit {
+export class RootListComponent implements OnInit {
   roots: any[];
   error: any;
 

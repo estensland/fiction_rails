@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Character } from '../models/character.model';
-import { CharacterService } from './character.service';
+import { Character } from '../../models/character.model';
+import { CharacterService } from '../../providers/character.service';
 import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
   providers: [CharacterService]
 })
 
-export class CharactersComponent implements OnInit {
+export class CharacterListComponent implements OnInit {
   characters: any[];
   error: any;
   params: any;

@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var root_service_1 = require('./root.service');
+var root_service_1 = require('../../providers/root.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var RootsComponent = (function () {
-    function RootsComponent(rootService) {
+var RootListComponent = (function () {
+    function RootListComponent(rootService) {
         this.rootService = rootService;
     }
-    RootsComponent.prototype.ngOnInit = function () {
+    RootListComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (!this.roots) {
             this.roots = [];
@@ -23,16 +23,16 @@ var RootsComponent = (function () {
         this.rootService.query()
             .then(function (roots) { return _this.roots = roots; }).catch(function (error) { return _this.error = error; });
     };
-    RootsComponent = __decorate([
+    RootListComponent = __decorate([
         core_1.Component({
-            selector: 'roots',
+            selector: 'root_list',
             template: "\n    <ul> Roots:\n      <li *ngFor='let root of roots'>{{root.root}} : {{root.meaning}}</li>\n    </ul>\n  ",
             directives: [router_deprecated_1.RouterLink],
             providers: [root_service_1.RootService]
         }), 
         __metadata('design:paramtypes', [root_service_1.RootService])
-    ], RootsComponent);
-    return RootsComponent;
+    ], RootListComponent);
+    return RootListComponent;
 }());
-exports.RootsComponent = RootsComponent;
-//# sourceMappingURL=roots.component.js.map
+exports.RootListComponent = RootListComponent;
+//# sourceMappingURL=root_list.component.js.map

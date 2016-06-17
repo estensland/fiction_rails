@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var characters_component_1 = require('./characters/characters.component');
-var character_component_1 = require('./characters/character.component');
-var character_service_1 = require('./characters/character.service');
-var roots_component_1 = require('./roots/roots.component');
-var root_service_1 = require('./roots/root.service');
+var character_list_component_1 = require('./components/character_list/character_list.component');
+var character_details_component_1 = require('./components/character_details/character_details.component');
+var character_service_1 = require('./providers/character.service');
+var root_list_component_1 = require('./components/root_list/root_list.component');
+var root_service_1 = require('./providers/root.service');
 var AppComponent = (function () {
     function AppComponent(router) {
         this.router = router;
@@ -23,24 +23,24 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'idocheann-app',
             template: "\n    <a [routerLink]=\"['Characters']\">Characters</a>\n    <a [routerLink]=\"['Roots']\">Roots</a>\n    <router-outlet></router-outlet>\n  ",
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES, characters_component_1.CharactersComponent, roots_component_1.RootsComponent, router_deprecated_1.RouterLink],
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES, character_list_component_1.CharacterListComponent, root_list_component_1.RootListComponent, router_deprecated_1.RouterLink],
             providers: [router_deprecated_1.ROUTER_PROVIDERS, character_service_1.CharacterService, root_service_1.RootService]
         }),
         router_deprecated_1.RouteConfig([
             {
                 path: '/characters',
                 name: 'Characters',
-                component: characters_component_1.CharactersComponent
+                component: character_list_component_1.CharacterListComponent
             },
             {
                 path: '/characters/:id',
                 name: 'Character',
-                component: character_component_1.CharacterComponent
+                component: character_details_component_1.CharacterDetailsComponent
             },
             {
                 path: '/roots',
                 name: 'Roots',
-                component: roots_component_1.RootsComponent
+                component: root_list_component_1.RootListComponent
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])

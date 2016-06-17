@@ -9,14 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var character_service_1 = require('./character.service');
+var character_service_1 = require('../../providers/character.service');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var CharactersComponent = (function () {
-    function CharactersComponent(characterService, params) {
+var CharacterListComponent = (function () {
+    function CharacterListComponent(characterService, params) {
         this.characterService = characterService;
         this.params = params;
     }
-    CharactersComponent.prototype.ngOnInit = function () {
+    CharacterListComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (!this.characters) {
             this.characters = [];
@@ -24,7 +24,7 @@ var CharactersComponent = (function () {
         this.characterService.query(this.params)
             .then(function (characters) { return _this.characters = characters; }).catch(function (error) { return _this.error = error; });
     };
-    CharactersComponent = __decorate([
+    CharacterListComponent = __decorate([
         core_1.Component({
             selector: 'characters',
             template: "\n    <ul> Characters:\n      <li *ngFor='let character of characters'><a [routerLink]=\"['Character', {id: character.id }]\">{{character.composite_name}}</a></li>\n    </ul>\n  ",
@@ -32,8 +32,8 @@ var CharactersComponent = (function () {
             providers: [character_service_1.CharacterService]
         }), 
         __metadata('design:paramtypes', [character_service_1.CharacterService, router_deprecated_1.RouteParams])
-    ], CharactersComponent);
-    return CharactersComponent;
+    ], CharacterListComponent);
+    return CharacterListComponent;
 }());
-exports.CharactersComponent = CharactersComponent;
-//# sourceMappingURL=characters.component.js.map
+exports.CharacterListComponent = CharacterListComponent;
+//# sourceMappingURL=character_list.component.js.map
