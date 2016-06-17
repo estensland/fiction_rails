@@ -1,24 +1,29 @@
-<table class="sa-table">
-  <thead>
-    <tr>
-      <th>Attr</th>
-      <th>Value</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= form_for @model, url: sa_link(@model, :update), method: 'post' do |f| %>
-      <% @attributes.each do |attr| %>
-        <tr>
-          <td> <%= f.label attr.first.to_sym %>:</td>
-          <td> <%= f.text_field attr.first.to_sym %></td>
-          <td> <%=@attr_hash[attr.first].type%></td>
-        </tr>
-      <% end %>
+<div class="container">
+  <h3>
+    <%= "Edit #{@model.class.name}: #{@model.id}" %>
+  </h3>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Attr</th>
+        <th>Value</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= form_for @model, url: sa_link(@model, :update), method: 'post' do |f| %>
+        <% @attributes.each do |attr| %>
+          <tr>
+            <td> <%= f.label attr.first.to_sym %>:</td>
+            <td> <%= f.text_field attr.first.to_sym %></td>
+            <td> <%=@attr_hash[attr.first].type%></td>
+          </tr>
+        <% end %>
 
-  <tr class="sa-table-submit">
-      <td colspan="3"> <%= f.submit class: "sa-edit-link" %></td>
-    <% end %>
-  </tr>
-  </tbody>
-</table>
+    <tr>
+        <td colspan="3"> <%= f.submit class: "sa-edit-link" %></td>
+      <% end %>
+    </tr>
+    </tbody>
+  </table>
+</div>
