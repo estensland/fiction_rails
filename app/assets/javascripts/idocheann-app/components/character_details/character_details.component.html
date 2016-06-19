@@ -54,7 +54,7 @@
       </td>
     </tr>
     <tr *ngFor="let sib of character.siblings">
-      <td><strong>Sibling:</strong></td>
+      <td><strong>{{character.sex == 'M' ? 'Brother' : 'Sister'}}:</strong></td>
       <td>
         <a [routerLink]="['Character', {id: sib.id }]">
           {{sib.composite_name}}
