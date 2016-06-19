@@ -33,21 +33,33 @@
       <td><strong>Fighting Class:</strong></td>
       <td>{{character.fighting_class}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="character.primary_house">
       <td><strong>Primary House:</strong></td>
-      <td>{{character.primary_house && character.primary_house.name}}</td>
+      <td>{{character.primary_house.name}}</td>
     </tr>
     <tr *ngIf="character.father">
       <td><strong>Father:</strong></td>
-      <td>{{character.father.composite_name}}</td>
+      <td>
+        <a [routerLink]="['Character', {id: character.father.id }]">
+          {{character.father.composite_name}}
+        </a>
+      </td>
     </tr>
     <tr *ngIf="character.mother">
       <td><strong>Mother:</strong></td>
-      <td>{{character.mother.composite_name}}</td>
+      <td>
+        <a [routerLink]="['Character', {id: character.mother.id }]">
+          {{character.mother.composite_name}}
+        </a>
+      </td>
     </tr>
     <tr *ngFor="let sib of character.siblings">
       <td><strong>Sibling:</strong></td>
-      <td>{{sib.composite_name}}</td>
+      <td>
+        <a [routerLink]="['Character', {id: sib.id }]">
+          {{sib.composite_name}}
+        </a>
+      </td>
     </tr>
   </table>
 </div>
