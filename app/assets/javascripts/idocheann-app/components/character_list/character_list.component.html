@@ -1,7 +1,5 @@
 <ul> Characters:
   <li *ngFor='let character of characters'>
-    <a [routerLink]="['Character', {id: character.id }]">
-      {{character.composite_name}}
-    </a>
+    <characterLink [character]="character"></characterLink>
   </li>
 </ul>

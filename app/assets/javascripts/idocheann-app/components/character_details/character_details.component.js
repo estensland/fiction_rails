@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var character_service_1 = require('../../providers/character.service');
+var character_link_component_1 = require('../character_link/character_link.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var CharacterDetailsComponent = (function () {
     function CharacterDetailsComponent(characterService, params) {
@@ -29,7 +30,7 @@ var CharacterDetailsComponent = (function () {
             moduleId: module.id,
             selector: 'character',
             templateUrl: 'character_details.component.html',
-            directives: [router_deprecated_1.RouterLink],
+            directives: [character_link_component_1.CharacterLinkComponent],
             providers: [character_service_1.CharacterService]
         }), 
         __metadata('design:paramtypes', [character_service_1.CharacterService, router_deprecated_1.RouteParams])

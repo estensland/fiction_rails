@@ -4,6 +4,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouterLink, Router} f
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { CharacterListComponent } from './components/character_list/character_list.component';
+import { CharacterLinkComponent } from './components/character_link/character_link.component';
 import { CharacterDetailsComponent } from './components/character_details/character_details.component';
 import { CharacterService } from './providers/character.service';
 

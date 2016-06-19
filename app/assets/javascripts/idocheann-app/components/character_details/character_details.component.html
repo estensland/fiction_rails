@@ -40,25 +40,19 @@
     <tr *ngIf="character.father">
       <td><strong>Father:</strong></td>
       <td>
-        <a [routerLink]="['Character', {id: character.father.id }]">
-          {{character.father.composite_name}}
-        </a>
+        <characterLink [character]="character.father"></characterLink>
       </td>
     </tr>
     <tr *ngIf="character.mother">
       <td><strong>Mother:</strong></td>
       <td>
-        <a [routerLink]="['Character', {id: character.mother.id }]">
-          {{character.mother.composite_name}}
-        </a>
+        <characterLink [character]="character.mother"></characterLink>
       </td>
     </tr>
     <tr *ngFor="let sib of character.siblings">
       <td><strong>{{character.sex == 'M' ? 'Brother' : 'Sister'}}:</strong></td>
       <td>
-        <a [routerLink]="['Character', {id: sib.id }]">
-          {{sib.composite_name}}
-        </a>
+        <characterLink [character]="sib"></characterLink>
       </td>
     </tr>
   </table>
