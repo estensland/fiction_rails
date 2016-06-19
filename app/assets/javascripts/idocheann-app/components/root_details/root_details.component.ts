@@ -4,22 +4,9 @@ import { RootService } from '../../providers/root.service';
 import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
 
 @Component({
+  moduleId: module.id,
   selector: 'root',
-  template: `
-    <h2>{{root.composite_name}}</h2>
-    <div class="col-md-6">
-      <table class="table table-striped table-bordered">
-        <tr>
-          <td><strong>Root:</strong></td>
-          <td>{{root.root}}</td>
-        </tr>
-        <tr>
-          <td><strong>Meaning:</strong></td>
-          <td>{{root.meaning}}</td>
-        </tr>
-      </table>
-    </div>
-  `,
+  templateUrl: 'root_details.component.html',
   directives: [RouterLink],
   providers: [RootService]
 })

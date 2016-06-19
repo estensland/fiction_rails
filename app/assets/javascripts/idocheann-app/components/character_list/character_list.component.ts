@@ -4,12 +4,9 @@ import { CharacterService } from '../../providers/character.service';
 import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
 
 @Component({
+  moduleId: module.id,
   selector: 'characters',
-  template: `
-    <ul> Characters:
-      <li *ngFor='let character of characters'><a [routerLink]="['Character', {id: character.id }]">{{character.composite_name}}</a></li>
-    </ul>
-  `,
+  templateUrl: 'character_list.component.html',
   directives: [RouterLink],
   providers: [CharacterService]
 })

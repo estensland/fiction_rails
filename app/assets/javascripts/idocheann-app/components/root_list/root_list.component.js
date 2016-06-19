@@ -25,8 +25,9 @@ var RootListComponent = (function () {
     };
     RootListComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'root_list',
-            template: "\n    <ul> Roots:\n      <li *ngFor='let root of roots'>\n        <a [routerLink]=\"['Root', {id: root.id }]\">{{root.root}}</a> : {{root.meaning}}\n      </li>\n    </ul>\n  ",
+            templateUrl: 'root_list.component.html',
             directives: [router_deprecated_1.RouterLink],
             providers: [root_service_1.RootService]
         }), 

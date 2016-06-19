@@ -26,8 +26,9 @@ var CharacterListComponent = (function () {
     };
     CharacterListComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'characters',
-            template: "\n    <ul> Characters:\n      <li *ngFor='let character of characters'><a [routerLink]=\"['Character', {id: character.id }]\">{{character.composite_name}}</a></li>\n    </ul>\n  ",
+            templateUrl: 'character_list.component.html',
             directives: [router_deprecated_1.RouterLink],
             providers: [character_service_1.CharacterService]
         }), 

@@ -26,8 +26,9 @@ var RootDetailsComponent = (function () {
     };
     RootDetailsComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'root',
-            template: "\n    <h2>{{root.composite_name}}</h2>\n    <div class=\"col-md-6\">\n      <table class=\"table table-striped table-bordered\">\n        <tr>\n          <td><strong>Root:</strong></td>\n          <td>{{root.root}}</td>\n        </tr>\n        <tr>\n          <td><strong>Meaning:</strong></td>\n          <td>{{root.meaning}}</td>\n        </tr>\n      </table>\n    </div>\n  ",
+            templateUrl: 'root_details.component.html',
             directives: [router_deprecated_1.RouterLink],
             providers: [root_service_1.RootService]
         }), 

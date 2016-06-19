@@ -1,0 +1,5 @@
+<ul> Roots:
+  <li *ngFor='let root of roots'>
+    <a [routerLink]="['Root', {id: root.id }]">{{root.root}}</a> : {{root.meaning}}
+  </li>
+</ul>

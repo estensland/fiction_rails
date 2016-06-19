@@ -4,14 +4,9 @@ import { RootService } from '../../providers/root.service';
 import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
 
 @Component({
+  moduleId: module.id,
   selector: 'root_list',
-  template: `
-    <ul> Roots:
-      <li *ngFor='let root of roots'>
-        <a [routerLink]="['Root', {id: root.id }]">{{root.root}}</a> : {{root.meaning}}
-      </li>
-    </ul>
-  `,
+  templateUrl: 'root_list.component.html',
   directives: [RouterLink],
   providers: [RootService]
 })

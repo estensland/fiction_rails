@@ -1,5 +1,3 @@
-<ul class="characters">
-  <li *ngFor="let character of characters">
-    <span class="badge">{{character.id}}</span> {{character.name}}
-  </li>
+<ul> Characters:
+  <li *ngFor='let character of characters'><a [routerLink]="['Character', {id: character.id }]">{{character.composite_name}}</a></li>
 </ul>
