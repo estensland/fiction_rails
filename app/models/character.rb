@@ -87,8 +87,16 @@ class Character < ActiveRecord::Base
     FamilyTree.new(character: self).descendant_html
   end
 
+  def compact_grandparents
+    grandparents.compact
+  end
+
+  def compact_great_grandparents
+    great_grandparents.compact
+  end
+
   def api_ready
-    self.to_json(:methods => [:houses, :composite_name, :primary_house, :father, :mother, :current_spouse, :siblings, :peerages, :parents, :grandparents, :great_grandparents, :uncles_and_aunts, :cousins, :nieces_and_nephews, :children, :grandchildren, :great_grandchildren])
+    self.to_json(:methods => [:houses, :composite_name, :primary_house, :father, :mother, :current_spouse, :siblings, :peerages, :parents, :compact_grandparents, :compact_great_grandparents, :uncles_and_aunts, :cousins, :nieces_and_nephews, :children, :grandchildren, :great_grandchildren])
   end
 
   def genereate_composite_name

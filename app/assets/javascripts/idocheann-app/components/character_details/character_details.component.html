@@ -37,6 +37,12 @@
       <td><strong>Primary House:</strong></td>
       <td>{{character.primary_house.name}}</td>
     </tr>
+    <tr *ngIf="character.current_spouse">
+      <td><strong>Spouse:</strong></td>
+      <td>
+        <characterLink [character]="character.current_spouse"></characterLink>
+      </td>
+    </tr>
     <tr *ngIf="character.father">
       <td><strong>Father:</strong></td>
       <td>
@@ -50,9 +56,63 @@
       </td>
     </tr>
     <tr *ngFor="let sib of character.siblings">
-      <td><strong>{{character.sex == 'M' ? 'Brother' : 'Sister'}}:</strong></td>
+      <td>
+        <strong>
+          {{sib.sex == 'M' ? 'Brother' : 'Sister'}}:
+        </strong>
+      </td>
       <td>
         <characterLink [character]="sib"></characterLink>
+      </td>
+    </tr>
+    <tr *ngFor="let child of character.children">
+      <td>
+        <strong>
+          {{child.sex == 'M' ? 'Son' : 'Daughter'}}:
+        </strong>
+      </td>
+      <td>
+        <characterLink [character]="child"></characterLink>
+      </td>
+    </tr>
+    <tr *ngFor="let grandchild of character.grandchildren">
+      <td>
+        <strong>
+          {{grandchild.sex == 'M' ? 'Grand Son' : 'Grand Daughter'}}:
+        </strong>
+      </td>
+      <td>
+        <characterLink [character]="grandchild"></characterLink>
+      </td>
+    </tr>
+    <tr *ngFor="let grandparent of character.compact_grandparents">
+      <td>
+        <strong>
+          {{grandparent.sex == 'M' ? 'Grandfather' : 'Grandmother'}}:
+        </strong>
+      </td>
+      <td>
+        <characterLink [character]="grandparent"></characterLink>
+      </td>
+    </tr>
+    <tr *ngFor="let great_grandparent of character.compact_great_grandparents">
+      <td>
+        <strong>
+          {{great_grandparent.sex == 'M' ? 'Great-Grandfather' : 'Great-Grandmother'}}:
+        </strong>
+      </td>
+      <td>
+        <characterLink [character]="great_grandparent"></characterLink>
+      </td>
+    </tr>
+    <tr *ngFor="let great_grandchild of character.great_grandchildren">
+      <td>
+        <strong>
+          {{great_grandchild.sex == 'M' ? 'Great-Grand Son' : 'Great-Grand Daughter'}}:
+        </strong>
+      </td>
+      <td>
+        <characterLink [character]="great_grandchild"></characterLink>
       </td>
     </tr>
   </table>
