@@ -1,7 +1,6 @@
 export class Character {
   id: number;
   name: string;
-  bailic_name: string;
   bailic_translation: string;
   native_name: string;
   native_translation: string;
@@ -12,21 +11,20 @@ export class Character {
   description: string;
   composite_name: string;
 
-  // houses: any;
-  // composite_name: any;
-  // primary_house: any;
-  // father: any;
-  // mother: any;
-  // current_spouse: any;
-  // siblings: any;
-  // peerages: any;
-  // parents: any;
-  // grandparents: any;
-  // great_grandparents: any;
-  // uncles_and_aunts: any;
-  // cousins: any;
-  // nieces_and_nephews:
-  // children: any;
-  // grandchildren: any;
-  // great_grandchildren: any;
+  houses: any;
+  primary_house: any;
+  father: any;
+  mother: any;
+  current_spouse: any;
+  siblings: any;
+  peerages: any;
+  parents: any;
+  grandparents: any;
+  great_grandparents: any;
+  uncles_and_aunts: any;
+  cousins: any;
+  nieces_and_nephews: any;
+  children: any;
+  grandchildren: any;
+  great_grandchildren: any;
 }
