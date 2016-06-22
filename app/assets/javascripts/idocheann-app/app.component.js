@@ -13,6 +13,8 @@ var router_deprecated_1 = require('@angular/router-deprecated');
 var character_list_component_1 = require('./components/character_list/character_list.component');
 var character_details_component_1 = require('./components/character_details/character_details.component');
 var character_service_1 = require('./providers/character.service');
+var house_list_component_1 = require('./components/house_list/house_list.component');
+var house_details_component_1 = require('./components/house_details/house_details.component');
 var root_list_component_1 = require('./components/root_list/root_list.component');
 var root_details_component_1 = require('./components/root_details/root_details.component');
 var root_service_1 = require('./providers/root.service');
@@ -23,7 +25,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'idocheann-app',
-            template: "\n    <a [routerLink]=\"['Characters']\">Characters</a>\n    <a [routerLink]=\"['Roots']\">Roots</a>\n    <router-outlet></router-outlet>\n  ",
+            template: "\n    <a [routerLink]=\"['Characters']\">Characters</a>\n    <a [routerLink]=\"['Roots']\">Roots</a>\n    <a [routerLink]=\"['Houses']\">Houses</a>\n    <router-outlet></router-outlet>\n  ",
             directives: [router_deprecated_1.ROUTER_DIRECTIVES, character_list_component_1.CharacterListComponent, root_list_component_1.RootListComponent, router_deprecated_1.RouterLink],
             providers: [router_deprecated_1.ROUTER_PROVIDERS, character_service_1.CharacterService, root_service_1.RootService]
         }),
@@ -47,6 +49,16 @@ var AppComponent = (function () {
                 path: '/roots',
                 name: 'Roots',
                 component: root_list_component_1.RootListComponent
+            },
+            {
+                path: '/houses/:id',
+                name: 'House',
+                component: house_details_component_1.HouseDetailsComponent
+            },
+            {
+                path: '/houses',
+                name: 'Houses',
+                component: house_list_component_1.HouseListComponent
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])

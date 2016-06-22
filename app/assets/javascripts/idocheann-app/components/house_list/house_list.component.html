@@ -1,0 +1,7 @@
+<ul> House:
+  <li *ngFor='let house of houses'>
+    <a [routerLink]="['House', {id: house.id }]">
+      {{house.name}}
+    </a>
+  </li>
+</ul>
