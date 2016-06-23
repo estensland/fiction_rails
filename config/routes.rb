@@ -33,8 +33,8 @@ Rails.application.routes.draw do
   get '/characters/:id', to: 'welcome#index'
   get '/roots', to: 'welcome#index'
   get '/roots/:id', to: 'welcome#index'
-  get '/house', to: 'welcome#index'
-  get '/house/:id', to: 'welcome#index'
+  get '/houses', to: 'welcome#index'
+  get '/houses/:id', to: 'welcome#index'
 
   # get 'characters/' => 'characters#index', as: :characters
   # get 'characters/:id' => 'characters#show', as: :character
