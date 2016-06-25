@@ -5,6 +5,10 @@
       <td><strong>Name:</strong></td>
       <td>{{house.name}}</td>
     </tr>
+    <tr *ngIf="house.realm">
+      <td><strong>Realm:</strong></td>
+      <td>{{house.realm.name}}</td>
+    </tr>
   </table>
 </div>
 
