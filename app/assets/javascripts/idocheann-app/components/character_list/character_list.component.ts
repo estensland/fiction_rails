@@ -9,11 +9,13 @@ import { Router, RouteParams } from '@angular/router-deprecated';
   selector: 'characters',
   templateUrl: 'character_list.component.html',
   directives: [CharacterLinkComponent],
-  providers: [CharacterService, CharacterLinkComponent]
+  providers: [CharacterService, CharacterLinkComponent],
+  inputs: ['characterIds']
 })
 
 export class CharacterListComponent implements OnInit {
   characters: any[];
+  characterIds: any[];
   error: any;
   params: any;
 
@@ -21,7 +23,12 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit() {
     if (!this.characters) { this.characters  = []}
-    this.characterService.query(this.params)
+
+    let characterIdQuery = "";
+
+    if (this.characterIds) { characterIdQuery = "character_ids=" + this.characterIds }
+
+    this.characterService.query(characterIdQuery)
       .then(characters => this.characters = characters).catch(error => this.error = error);
   }
 

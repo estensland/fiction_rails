@@ -5,7 +5,13 @@ class Api::CharactersController < ApplicationController
 
 
   def index
-    render json: Character.order(:composite_name), status: 200
+    @characters = Character.order(:composite_name)
+
+    if params['character_ids']
+      @characters = @characters.where(id: params['character_ids'].split(','))
+    end
+
+    render json: @characters, status: 200
   end
 
 

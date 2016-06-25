@@ -22,7 +22,11 @@ var CharacterListComponent = (function () {
         if (!this.characters) {
             this.characters = [];
         }
-        this.characterService.query(this.params)
+        var characterIdQuery = "";
+        if (this.characterIds) {
+            characterIdQuery = "character_ids=" + this.characterIds;
+        }
+        this.characterService.query(characterIdQuery)
             .then(function (characters) { return _this.characters = characters; }).catch(function (error) { return _this.error = error; });
     };
     CharacterListComponent = __decorate([
@@ -31,7 +35,8 @@ var CharacterListComponent = (function () {
             selector: 'characters',
             templateUrl: 'character_list.component.html',
             directives: [character_link_component_1.CharacterLinkComponent],
-            providers: [character_service_1.CharacterService, character_link_component_1.CharacterLinkComponent]
+            providers: [character_service_1.CharacterService, character_link_component_1.CharacterLinkComponent],
+            inputs: ['characterIds']
         }), 
         __metadata('design:paramtypes', [character_service_1.CharacterService, router_deprecated_1.RouteParams])
     ], CharacterListComponent);

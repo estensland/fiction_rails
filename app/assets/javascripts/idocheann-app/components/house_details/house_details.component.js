@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var house_service_1 = require('../../providers/house.service');
+var character_list_component_1 = require('../character_list/character_list.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var HouseDetailsComponent = (function () {
     function HouseDetailsComponent(houseService, params) {
@@ -29,7 +30,8 @@ var HouseDetailsComponent = (function () {
             moduleId: module.id,
             selector: 'house',
             templateUrl: 'house_details.component.html',
-            providers: [house_service_1.HouseService]
+            providers: [house_service_1.HouseService],
+            directives: [character_list_component_1.CharacterListComponent]
         }), 
         __metadata('design:paramtypes', [house_service_1.HouseService, router_deprecated_1.RouteParams])
     ], HouseDetailsComponent);

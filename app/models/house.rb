@@ -5,7 +5,11 @@ class House < ActiveRecord::Base
 
   belongs_to :realm
 
+  def primary_character_ids
+    primary_house_characters.pluck(:id)
+  end
+
   def api_ready
-    self.to_json(:methods => [:primary_house_characters, :character_houses, :realm])
+    self.to_json(:methods => [:primary_character_ids, :character_houses, :realm])
   end
 end

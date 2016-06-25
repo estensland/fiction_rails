@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { House } from '../../models/house.model';
 import { HouseService } from '../../providers/house.service';
+import { CharacterListComponent } from '../character_list/character_list.component';
 import { Router, RouteParams } from '@angular/router-deprecated';
 
 @Component({
   moduleId: module.id,
   selector: 'house',
   templateUrl: 'house_details.component.html',
-  providers: [HouseService]
+  providers: [HouseService],
+  directives: [CharacterListComponent]
 })
 
 export class HouseDetailsComponent implements OnInit {
   house: any;
   error: any;
   params: any;
+  characterIds: any;
+  primary_character_ids: any;
 
   constructor(private houseService: HouseService, params: RouteParams) { this.params = params }
 
