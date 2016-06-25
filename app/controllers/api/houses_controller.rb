@@ -5,7 +5,7 @@ class Api::HousesController < ApplicationController
 
 
   def index
-    render json: House.all, status: 200
+    render json: House.order(:name), status: 200
   end
 
 
