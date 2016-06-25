@@ -29,6 +29,16 @@
       <td><strong>Sex:</strong></td>
       <td>{{character.sex}}</td>
     </tr>
+    <tr *ngFor="let peerage of character.peerages">
+      <td>
+        <strong>
+          Peerage:
+        </strong>
+      </td>
+      <td>
+        {{peerage.title}}
+      </td>
+    </tr>
     <tr>
       <td><strong>Fighting Class:</strong></td>
       <td>{{character.fighting_class}}</td>
