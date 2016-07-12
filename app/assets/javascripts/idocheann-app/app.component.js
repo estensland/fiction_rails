@@ -15,6 +15,8 @@ var character_details_component_1 = require('./components/character_details/char
 var character_service_1 = require('./providers/character.service');
 var house_list_component_1 = require('./components/house_list/house_list.component');
 var house_details_component_1 = require('./components/house_details/house_details.component');
+var realm_list_component_1 = require('./components/realm_list/realm_list.component');
+var realm_details_component_1 = require('./components/realm_details/realm_details.component');
 var root_list_component_1 = require('./components/root_list/root_list.component');
 var root_details_component_1 = require('./components/root_details/root_details.component');
 var root_service_1 = require('./providers/root.service');
@@ -25,7 +27,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'idocheann-app',
-            template: "\n    <a [routerLink]=\"['Characters']\">Characters</a>\n    <a [routerLink]=\"['Roots']\">Roots</a>\n    <a [routerLink]=\"['Houses']\">Houses</a>\n    <router-outlet></router-outlet>\n  ",
+            template: "\n    <a [routerLink]=\"['Characters']\">Characters</a>\n    <a [routerLink]=\"['Roots']\">Roots</a>\n    <a [routerLink]=\"['Houses']\">Houses</a>\n    <a [routerLink]=\"['Realms']\">Realms</a>\n    <router-outlet></router-outlet>\n  ",
             directives: [router_deprecated_1.ROUTER_DIRECTIVES, character_list_component_1.CharacterListComponent, root_list_component_1.RootListComponent, router_deprecated_1.RouterLink],
             providers: [router_deprecated_1.ROUTER_PROVIDERS, character_service_1.CharacterService, root_service_1.RootService]
         }),
@@ -59,6 +61,16 @@ var AppComponent = (function () {
                 path: '/houses',
                 name: 'Houses',
                 component: house_list_component_1.HouseListComponent
+            },
+            {
+                path: '/realms/:id',
+                name: 'Realm',
+                component: realm_details_component_1.RealmDetailsComponent
+            },
+            {
+                path: '/realms',
+                name: 'Realms',
+                component: realm_list_component_1.RealmListComponent
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])

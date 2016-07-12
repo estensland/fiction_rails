@@ -1,0 +1,13 @@
+<h2>{{realm.name}}</h2>
+<div class="col-md-12">
+  <table class="table table-striped table-bordered">
+    <tr>
+      <td><strong>Name:</strong></td>
+      <td>{{realm.name}}</td>
+    </tr>
+    <tr *ngIf="realm.realm">
+      <td><strong>Realm:</strong></td>
+      <td>{{realm.realm.name}}</td>
+    </tr>
+  </table>
+</div>

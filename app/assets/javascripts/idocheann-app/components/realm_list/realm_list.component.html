@@ -1,0 +1,7 @@
+<ul> Realms:
+  <li *ngFor='let realm of realms'>
+    <a [routerLink]="['Realm', {id: realm.id }]">
+      {{realm.name}}
+    </a>
+  </li>
+</ul>

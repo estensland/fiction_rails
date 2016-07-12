@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get '/roots/:id', to: 'welcome#index'
   get '/houses', to: 'welcome#index'
   get '/houses/:id', to: 'welcome#index'
+  get '/realms', to: 'welcome#index'
+  get '/realms/:id', to: 'welcome#index'
 
   # get 'characters/' => 'characters#index', as: :characters
   # get 'characters/:id' => 'characters#show', as: :character
