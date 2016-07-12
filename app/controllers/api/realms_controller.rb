@@ -10,7 +10,7 @@ class Api::RealmsController < ApplicationController
 
 
   def show
-    render json: Realm.find(params['id']), status: 200
+    render json: Realm.find(params['id']).api_ready, status: 200
   end
 
 end

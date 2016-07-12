@@ -19,11 +19,8 @@ var RealmDetailsComponent = (function () {
     }
     RealmDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        if (!this.realm) {
-            this.realm = { id: 1, siblings: [{}] };
-        }
         this.realmService.get(this.params)
-            .then(function (realm) { return _this.realm = realm; }).catch(function (error) { return _this.error = error; });
+            .then(function (realm) { return _this.realm = realm; }).then(function (r) { console.log(r); }).catch(function (error) { return _this.error = error; });
     };
     RealmDetailsComponent = __decorate([
         core_1.Component({
@@ -31,7 +28,7 @@ var RealmDetailsComponent = (function () {
             selector: 'realm',
             templateUrl: 'realm_details.component.html',
             providers: [realm_service_1.RealmService],
-            directives: [character_list_component_1.CharacterListComponent]
+            directives: [character_list_component_1.CharacterListComponent, router_deprecated_1.RouterLink]
         }), 
         __metadata('design:paramtypes', [realm_service_1.RealmService, router_deprecated_1.RouteParams])
     ], RealmDetailsComponent);

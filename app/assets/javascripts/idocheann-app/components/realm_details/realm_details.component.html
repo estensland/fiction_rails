@@ -1,13 +1,36 @@
-<h2>{{realm.name}}</h2>
-<div class="col-md-12">
-  <table class="table table-striped table-bordered">
-    <tr>
-      <td><strong>Name:</strong></td>
-      <td>{{realm.name}}</td>
-    </tr>
-    <tr *ngIf="realm.realm">
-      <td><strong>Realm:</strong></td>
-      <td>{{realm.realm.name}}</td>
-    </tr>
-  </table>
+<div *ngIf="realm">
+  <h2>{{realm.name}}</h2>
+  <div class="col-md-12">
+    <table class="table table-striped table-bordered">
+      <tr>
+        <td><strong>Name:</strong></td>
+        <td>{{realm.name}}</td>
+      </tr>
+      <tr *ngIf="realm.translation">
+        <td><strong>Translation:</strong></td>
+        <td>{{realm.translation}}</td>
+      </tr>
+      <tr *ngIf="realm.parent">
+        <td><strong>Vassal of:</strong></td>
+        <td>
+          <a [routerLink]="['Realm', {id: realm.parent.id }]">
+            {{realm.parent.name}}
+          </a>
+        </td>
+      </tr>
+      <tr *ngFor='let childRealm of realm.children'>
+        <td><strong>Vassal Realm:</strong></td>
+        <td>
+          <a [routerLink]="['Realm', {id: childRealm.id }]">
+            {{childRealm.name}}
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
+<!--
+<div *ngIf="house.primary_character_ids">
+  <characters [characterIds]="house.primary_character_ids"></characters>
+</div>
+ -->

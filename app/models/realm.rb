@@ -12,7 +12,7 @@ class Realm < ActiveRecord::Base
   end
 
   def api_ready
-    self.to_json(:methods => [:main_title, :houses, :characters, :titles])
+    self.to_json(:methods => [:main_title, :houses, :characters, :titles, :parent, :children])
   end
 
   def primary_title
