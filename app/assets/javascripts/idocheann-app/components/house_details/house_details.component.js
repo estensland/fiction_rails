@@ -31,7 +31,7 @@ var HouseDetailsComponent = (function () {
             selector: 'house',
             templateUrl: 'house_details.component.html',
             providers: [house_service_1.HouseService],
-            directives: [character_list_component_1.CharacterListComponent]
+            directives: [character_list_component_1.CharacterListComponent, router_deprecated_1.RouterLink]
         }), 
         __metadata('design:paramtypes', [house_service_1.HouseService, router_deprecated_1.RouteParams])
     ], HouseDetailsComponent);
