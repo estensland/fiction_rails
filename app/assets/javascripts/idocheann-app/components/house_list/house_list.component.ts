@@ -8,11 +8,13 @@ import { Router, RouterLink, RouteParams } from '@angular/router-deprecated';
   selector: 'houses',
   templateUrl: 'house_list.component.html',
   directives: [RouterLink],
-  providers: [HouseService]
+  providers: [HouseService],
+  inputs: ['houseIds']
 })
 
 export class HouseListComponent implements OnInit {
   houses: any[];
+  houseIds: any[];
   error: any;
   params: any;
 
@@ -20,7 +22,12 @@ export class HouseListComponent implements OnInit {
 
   ngOnInit() {
     if (!this.houses) { this.houses  = []}
-    this.houseService.query(this.params)
+
+    let houseIdQuery = "";
+
+    if (this.houseIds) { houseIdQuery = "house_ids=" + this.houseIds }
+
+    this.houseService.query(houseIdQuery)
       .then(houses => this.houses = houses).catch(error => this.error = error);
   }
 

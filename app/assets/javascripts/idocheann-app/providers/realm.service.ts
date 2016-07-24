@@ -16,7 +16,7 @@ export class RealmService {
   query(params: any): Promise<Realm[]> {
     let hitUrl = this.apiUrl
 
-    return this.http.get(this.apiUrl, { })
+    return this.http.get(this.apiUrl, { body: 'r', search: params })
       .toPromise()
       .then(response => response.json());
   }

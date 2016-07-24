@@ -28,6 +28,11 @@
       </tr>
     </table>
   </div>
+
+  <div *ngIf="realm.house_ids">
+    <houses [houseIds]="realm.house_ids"></houses>
+  </div>
+
   <div *ngIf="realm.character_ids">
     <characters [characterIds]="realm.character_ids"></characters>
   </div>

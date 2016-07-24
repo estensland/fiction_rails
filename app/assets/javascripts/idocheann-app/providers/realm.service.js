@@ -19,7 +19,7 @@ var RealmService = (function () {
     }
     RealmService.prototype.query = function (params) {
         var hitUrl = this.apiUrl;
-        return this.http.get(this.apiUrl, {})
+        return this.http.get(this.apiUrl, { body: 'r', search: params })
             .toPromise()
             .then(function (response) { return response.json(); });
     };

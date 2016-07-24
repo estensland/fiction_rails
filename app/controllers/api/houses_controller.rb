@@ -5,7 +5,13 @@ class Api::HousesController < ApplicationController
 
 
   def index
-    render json: House.order(:name), status: 200
+    @houses = House.order(:name)
+
+    if params['house_ids']
+      @houses = @houses.where(id: params['house_ids'].split(','))
+    end
+
+    render json: @houses, status: 200
   end
 
 

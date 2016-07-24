@@ -19,10 +19,7 @@ var HouseService = (function () {
     }
     HouseService.prototype.query = function (params) {
         var hitUrl = this.apiUrl;
-        if (params.get('search')) {
-            hitUrl = hitUrl + '?search=' + params.get('search');
-        }
-        return this.http.get(this.apiUrl)
+        return this.http.get(this.apiUrl, { body: 'r', search: params })
             .toPromise()
             .then(function (response) { return response.json(); });
     };

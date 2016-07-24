@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var realm_service_1 = require('../../providers/realm.service');
 var character_list_component_1 = require('../character_list/character_list.component');
+var house_list_component_1 = require('../house_list/house_list.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var RealmDetailsComponent = (function () {
     function RealmDetailsComponent(realmService, params) {
@@ -28,7 +29,7 @@ var RealmDetailsComponent = (function () {
             selector: 'realm',
             templateUrl: 'realm_details.component.html',
             providers: [realm_service_1.RealmService],
-            directives: [character_list_component_1.CharacterListComponent, router_deprecated_1.RouterLink]
+            directives: [character_list_component_1.CharacterListComponent, house_list_component_1.HouseListComponent, router_deprecated_1.RouterLink]
         }), 
         __metadata('design:paramtypes', [realm_service_1.RealmService, router_deprecated_1.RouteParams])
     ], RealmDetailsComponent);

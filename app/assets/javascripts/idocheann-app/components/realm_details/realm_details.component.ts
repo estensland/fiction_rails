@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Realm } from '../../models/realm.model';
 import { RealmService } from '../../providers/realm.service';
 import { CharacterListComponent } from '../character_list/character_list.component';
+import { HouseListComponent } from '../house_list/house_list.component';
 import { Router, RouteParams, RouterLink } from '@angular/router-deprecated';
 
 @Component({
@@ -9,14 +10,15 @@ import { Router, RouteParams, RouterLink } from '@angular/router-deprecated';
   selector: 'realm',
   templateUrl: 'realm_details.component.html',
   providers: [RealmService],
-  directives: [CharacterListComponent, RouterLink]
+  directives: [CharacterListComponent, HouseListComponent, RouterLink]
 })
 
 export class RealmDetailsComponent implements OnInit {
   realm: any;
   error: any;
   params: any;
-  characterIds: any;
+  houses: any;
+  houseIds: any;
   primary_character_ids: any;
 
   constructor(private realmService: RealmService, params: RouteParams) { this.params = params }

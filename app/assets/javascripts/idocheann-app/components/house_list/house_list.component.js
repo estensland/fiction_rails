@@ -21,7 +21,11 @@ var HouseListComponent = (function () {
         if (!this.houses) {
             this.houses = [];
         }
-        this.houseService.query(this.params)
+        var houseIdQuery = "";
+        if (this.houseIds) {
+            houseIdQuery = "house_ids=" + this.houseIds;
+        }
+        this.houseService.query(houseIdQuery)
             .then(function (houses) { return _this.houses = houses; }).catch(function (error) { return _this.error = error; });
     };
     HouseListComponent = __decorate([
@@ -30,7 +34,8 @@ var HouseListComponent = (function () {
             selector: 'houses',
             templateUrl: 'house_list.component.html',
             directives: [router_deprecated_1.RouterLink],
-            providers: [house_service_1.HouseService]
+            providers: [house_service_1.HouseService],
+            inputs: ['houseIds']
         }), 
         __metadata('design:paramtypes', [house_service_1.HouseService, router_deprecated_1.RouteParams])
     ], HouseListComponent);
