@@ -11,8 +11,12 @@ class Realm < ActiveRecord::Base
     end
   end
 
+  def character_ids
+    characters.pluck(:id)
+  end
+
   def api_ready
-    self.to_json(:methods => [:main_title, :houses, :characters, :titles, :parent, :children])
+    self.to_json(:methods => [:main_title, :houses, :characters, :titles, :parent, :children, :character_ids])
   end
 
   def primary_title
