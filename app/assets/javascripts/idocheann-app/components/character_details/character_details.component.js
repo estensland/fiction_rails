@@ -30,7 +30,7 @@ var CharacterDetailsComponent = (function () {
             moduleId: module.id,
             selector: 'character',
             templateUrl: 'character_details.component.html',
-            directives: [character_link_component_1.CharacterLinkComponent],
+            directives: [character_link_component_1.CharacterLinkComponent, router_deprecated_1.RouterLink],
             providers: [character_service_1.CharacterService]
         }), 
         __metadata('design:paramtypes', [character_service_1.CharacterService, router_deprecated_1.RouteParams])

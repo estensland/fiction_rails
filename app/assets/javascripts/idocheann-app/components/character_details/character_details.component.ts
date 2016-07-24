@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Character } from '../../models/character.model';
 import { CharacterService } from '../../providers/character.service';
 import { CharacterLinkComponent } from '../character_link/character_link.component';
-import { Router, RouteParams } from '@angular/router-deprecated';
+import { Router, RouteParams, RouterLink } from '@angular/router-deprecated';
 
 @Component({
   moduleId: module.id,
   selector: 'character',
   templateUrl: 'character_details.component.html',
-  directives: [CharacterLinkComponent],
+  directives: [CharacterLinkComponent, RouterLink],
   providers: [CharacterService]
 })
 
