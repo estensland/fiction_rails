@@ -4,7 +4,8 @@ class CreateFormRoots < ActiveRecord::Migration
       t.string  :meaning
       t.integer :root_id
       t.integer :form_id
-      
+      t.boolean :noun, default: true
+
       t.timestamps
     end
   end

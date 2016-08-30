@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114122645) do
+ActiveRecord::Schema.define(version: 20160725012611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "affix_form_roots", force: :cascade do |t|
+    t.integer  "affix_id"
+    t.integer  "form_root_id"
+    t.integer  "ordering",     default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "affixes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "formula"
+    t.integer  "language_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "character_ethnies", force: :cascade do |t|
     t.integer  "character_id"
@@ -66,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160114122645) do
     t.string   "meaning"
     t.integer  "root_id"
     t.integer  "form_id"
+    t.boolean  "noun",       default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

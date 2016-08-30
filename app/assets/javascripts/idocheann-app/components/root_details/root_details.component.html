@@ -10,4 +10,31 @@
       <td>{{root.meaning}}</td>
     </tr>
   </table>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>
+          <strong>
+            Conjugation
+          </strong>
+        </th>
+        <th>
+          <strong>
+            Meaning
+          </strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let conjugation of root.conjugations">
+        <td>
+          {{conjugation.congjugation}}
+        </td>
+        <td>
+          {{conjugation.form_root.meaning}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
 </div>

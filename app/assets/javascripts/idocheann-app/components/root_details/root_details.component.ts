@@ -21,7 +21,7 @@ export class RootDetailsComponent implements OnInit {
   ngOnInit() {
     if (!this.root) { this.root = {id: 1}}
     this.rootService.get(this.params)
-      .then(root => this.root = root).catch(error => this.error = error);
+      .then(root => this.root = root).then(function(a){console.log(a)}).catch(error => this.error = error);
   }
 
 }

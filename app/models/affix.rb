@@ -1,13 +1,10 @@
-class Form < ActiveRecord::Base
-  has_many :form_roots
-  has_many :roots, through: :form_roots
+class Affix < ActiveRecord::Base
+  has_many :affix_form_roots
+  has_many :form_roots, through: :affix_form_roots
 
-
-  def conjugate(root)
+  def conjugate(stem)
     formula.
-      gsub('0', root[0]).
-      gsub('1', root[1]).
-      gsub('2', root[2]).
+      gsub('@', stem).
 
       gsub('3', 'ṅ').
       gsub('4', 'ñ').
@@ -21,4 +18,5 @@ class Form < ActiveRecord::Base
       gsub('-', 'ü').
       downcase.capitalize
   end
+
 end

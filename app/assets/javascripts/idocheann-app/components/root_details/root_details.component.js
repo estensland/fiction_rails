@@ -22,7 +22,7 @@ var RootDetailsComponent = (function () {
             this.root = { id: 1 };
         }
         this.rootService.get(this.params)
-            .then(function (root) { return _this.root = root; }).catch(function (error) { return _this.error = error; });
+            .then(function (root) { return _this.root = root; }).then(function (a) { console.log(a); }).catch(function (error) { return _this.error = error; });
     };
     RootDetailsComponent = __decorate([
         core_1.Component({

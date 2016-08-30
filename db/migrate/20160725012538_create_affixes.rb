@@ -1,6 +1,6 @@
-class CreateForms < ActiveRecord::Migration
+class CreateAffixes < ActiveRecord::Migration
   def change
-    create_table :forms do |t|
+    create_table :affixes do |t|
       t.string  :name
       t.string  :formula
       t.integer :language_id

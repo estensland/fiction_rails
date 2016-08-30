@@ -9,6 +9,6 @@ class RootsController < ApplicationController
   end
 
   def show
-    @root = Root.find(params[:id])
+    @root = Root.find(params[:id]).
   end
 end
